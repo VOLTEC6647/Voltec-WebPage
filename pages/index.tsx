@@ -35,27 +35,29 @@ const Home: NextPage = () => {
         <div className='bg-[url("/cover.jpeg")] absolute h-full w-full bg-cover opacity-20'></div>
       </div>
       <div className="blog bg-background-blue p-4 lg:p-12">
-        <div className="headings pt-4 lg:pt-0 pb-8">
-          <h1 className="title text-white pb-5">Blog Posts ⚡️</h1>
-          <hr />
-        </div>
-        <div className="posts flex flex-col gap-6">
-          <Post
-            title="Escuela VOLTEC"
-            body={
-              "Basic Attention Token detected some zero confirmation transaction for a FOMO! Monero broadcast few segregated witness after the oracle, therefore, Mt. Gox looked at many decentralisation at a dead cat bounce."
-            }
-            badges={["community", "offseason"]}
-            src={"/escuela-voltec.jpeg"}
-          />
-          <Post
-            title="This is AtosBot"
-            src={"/atosbot.jpeg"}
-            body={
-              "Basic Attention Token detected some zero confirmation transaction for a FOMO! Monero broadcast few segregated witness after the oracle, therefore, Mt. Gox looked at many decentralisation at a dead cat bounce."
-            }
-            badges={["robots", "information"]}
-          />
+        <div className="max-w-6xl mx-auto">
+          <div className="headings pt-4 lg:pt-0 pb-8">
+            <h1 className="title text-white pb-5">Blog ⚡️</h1>
+            <hr />
+          </div>
+          <div className="posts flex flex-col gap-6">
+            <Post
+              title="Escuela VOLTEC"
+              body={
+                "Basic Attention Token detected some zero confirmation transaction for a FOMO! Monero broadcast few segregated witness after the oracle, therefore, Mt. Gox looked at many decentralisation at a dead cat bounce."
+              }
+              badges={["community", "offseason"]}
+              src={"/escuela-voltec.jpeg"}
+            />
+            <Post
+              title="This is AtosBot"
+              src={"/atosbot.jpeg"}
+              body={
+                "Basic Attention Token detected some zero confirmation transaction for a FOMO! Monero broadcast few segregated witness after the oracle, therefore, Mt. Gox looked at many decentralisation at a dead cat bounce."
+              }
+              badges={["robots", "information"]}
+            />
+          </div>
         </div>
       </div>
     </div>
