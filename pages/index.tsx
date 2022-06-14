@@ -14,13 +14,16 @@ const Home: NextPage = () => {
               <Link href="/">
                 <a>Inicio</a>
               </Link>
-              <Link href="/">
+              <Link href="/blog">
+                <a>Blog</a>
+              </Link>
+              <Link href="/bitacora">
                 <a>Bitácora</a>
               </Link>
-              <Link href="/">
+              <Link href="/historia">
                 <a>Nuestra Historia</a>
               </Link>
-              <Link href="/">
+              <Link href="/patrocinadores">
                 <a>Patrocinadores</a>
               </Link>
             </div>
