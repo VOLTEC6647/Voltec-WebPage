@@ -14,17 +14,17 @@ type Props = {
 const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className="app">
-      <div className="w-screen h-screen bg-primary-blue">
+      <div className="w-full h-screen bg-primary-blue">
         <div className="content absolute z-10">
           <Navbar />
-          <div className="hero w-screen h-[90vh] flex justify-center items-center">
+          <div className="hero w-full h-[90vh] flex justify-center items-center">
             <img src="/voltec.png" alt="" className="h-1/4 lg:h-1/2" />
-            <h1 className="text-7xl lg:text-10xl font-black opacity-100 text-white font-sans tracking-tighter leading-none">
+            <h1 className="text-6xl lg:text-10xl font-black opacity-100 text-white font-sans tracking-tighter leading-none">
               VOLTEC <br /> 6647
             </h1>
           </div>
         </div>
-        <div className='bg-[url("/cover.jpeg")] absolute h-full w-full bg-cover opacity-20'></div>
+        <div className='bg-[url("/cover.jpeg")] absolute h-screen w-full bg-cover opacity-20'></div>
       </div>
       <Blog posts={posts} />
       <Footer />
