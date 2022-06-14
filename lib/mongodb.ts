@@ -4,7 +4,7 @@ const uri = process.env.MONGODB;
 const options = {};
 
 let client;
-let clientPromise;
+let clientPromise: any;
 
 if (!process.env.MONGODB) {
   throw new Error("Please add your Mongo URI to .env.local");
@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === "development") {
   // is preserved across module reloads caused by HMR (Hot Module Replacement).
   // @ts-ignore
   if (!global._mongoClientPromise) {
+    // @ts-ignore
     client = new MongoClient(uri, options);
     // @ts-ignore
     global._mongoClientPromise = client.connect();
