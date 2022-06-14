@@ -4,18 +4,20 @@ import Badge, { BadgeTypes } from "../components/Badge";
 
 type Props = {
   title: string;
-  body: string;
+  body?: string;
   badges?: string[];
   src: string;
+  likes: number;
+  children?: React.ReactNode;
 };
 
-const Post = ({ title, body, badges, src }: Props) => {
-  const [likes, setLikes] = useState(0);
+const Post = ({ title, badges, src, children, likes }: Props) => {
+  const [clientLikes, setClientLikes] = useState(likes);
   const [liked, setLiked] = useState(false);
 
   const toggleLike = () => {
     setLiked(!liked);
-    setLikes(liked ? likes - 1 : likes + 1);
+    setClientLikes(liked ? clientLikes - 1 : clientLikes + 1);
   };
 
   return (
@@ -44,7 +46,7 @@ const Post = ({ title, body, badges, src }: Props) => {
               June 11, 2022
             </p>
           </div>
-          <p className="text-gray-300 font-manrope">{body}</p>
+          <p className="text-gray-300 font-manrope">{children}</p>
         </div>
         <div className="bottom-row flex justify-between items-center w-full pt-4">
           <div className="badges flex gap-4 justify-start items-center">
@@ -84,7 +86,9 @@ const Post = ({ title, body, badges, src }: Props) => {
                 </svg>
               )}
             </div>
-            <div className="count text-lg">{likes}</div>
+            <div className="count text-lg">
+              {clientLikes > 1000 ? Math.floor(clientLikes / 100) / 10.0 + "k" : clientLikes}
+            </div>
           </div>
         </div>
       </div>

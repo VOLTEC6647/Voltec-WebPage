@@ -31,3 +31,12 @@
     rgba(186, 8, 181, 1) 90.1%
   );
 }
+
+.email-button {
+  background: linear-gradient(135deg, #4b8dd2 0%, #1f2e7a 100%);
+}
+
+.email-button:hover {
+  transition: all 1s ease-in;
+  background: linear-gradient(45deg, #2d537b 0%, #0f1638 100%);
+}
