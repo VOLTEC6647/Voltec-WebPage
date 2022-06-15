@@ -1,10 +1,11 @@
 import { NextPage, NextPageContext } from "next";
-import Blog from "../components/Blog";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Blog from "../../components/Blog";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Image from "next/image";
 
-import clientPromise from "../lib/mongodb";
-import BlogPost from "../lib/types/BlogPost";
+import clientPromise from "../../lib/mongodb";
+import BlogPost from "../../lib/types/BlogPost";
 
 type Props = {
   posts: BlogPost[];
@@ -14,6 +15,17 @@ const BlogPage: NextPage<Props> = ({ posts }) => {
   return (
     <div className="bg-background-blue h-screen w-screen">
       <Navbar />
+      <div className="image h-1/3">
+        <div className="image-container relative h-full w-full">
+          <Image
+            src="https://res.cloudinary.com/dnrm/image/upload/v1655230514/atosbot_lxup6j.jpg"
+            alt="AtosBot, the VOLTEC robot"
+            layout="fill"
+            objectFit="cover"
+            className="blur-sm"
+          />
+        </div>
+      </div>
       <Blog posts={posts} />
       <Footer />
     </div>

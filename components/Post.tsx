@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Badge, { BadgeTypes } from "../components/Badge";
+import formatLikes from '../lib/formatLikes';
+import Link from 'next/link'
+import { ObjectId } from "mongodb";
 
 type Props = {
+  id: ObjectId;
   title: string;
   body?: string;
   badges?: string[];
@@ -11,7 +15,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const Post = ({ title, badges, src, children, likes }: Props) => {
+const Post = ({ id, title, badges, src, children, likes }: Props) => {
   const [clientLikes, setClientLikes] = useState(likes);
   const [liked, setLiked] = useState(false);
 
@@ -40,13 +44,17 @@ const Post = ({ title, badges, src, children, likes }: Props) => {
           </p>
           <div className="title flex justify-between items-center w-full lg:pt-16">
             <h1 className="text-6xl text-white font-black font-manrope hover:underline hover:cursor-pointer">
-              {title}
+              <Link href={`/blog/${id}`}>
+                <a>
+                  {title}
+                </a>
+              </Link>
             </h1>
             <p className="text-sm text-white font-normal font-mono lg:block hidden">
               June 11, 2022
             </p>
           </div>
-          <p className="text-gray-300 font-manrope">{children}</p>
+          <p className="text-gray-300 font-manrope text-ellipsis pt-2">{children?.toString().substring(0, 200)}...</p>
         </div>
         <div className="bottom-row flex justify-between items-center w-full pt-4">
           <div className="badges flex gap-4 justify-start items-center">
@@ -87,7 +95,7 @@ const Post = ({ title, badges, src, children, likes }: Props) => {
               )}
             </div>
             <div className="count text-lg">
-              {clientLikes > 1000 ? Math.floor(clientLikes / 100) / 10.0 + "k" : clientLikes}
+              {formatLikes(clientLikes)}
             </div>
           </div>
         </div>
