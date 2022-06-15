@@ -40,7 +40,6 @@ export async function getServerSideProps(context: NextPageContext) {
     const db = client.db("Blog");
 
     const posts = await db.collection("Posts").find({}).toArray();
-    console.log("index.tsx " + JSON.parse(JSON.stringify(posts)));
 
     return {
       props: {
