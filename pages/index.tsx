@@ -4,6 +4,7 @@ import Blog from "../components/Blog";
 import clientPromise from "../lib/mongodb";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Head from "next/head";
 
 import BlogPost from "../lib/types/BlogPost";
 
@@ -14,6 +15,9 @@ type Props = {
 const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className="app">
+      <Head>
+        <title>VOLTEC Robotics 6647</title>
+      </Head>
       <div className="w-full h-screen bg-primary-blue">
         <div className="content absolute z-10">
           <Navbar />
