@@ -18,7 +18,7 @@ const Post = ({ post, error }: Props) => {
     <div className="bg-background-blue h-screen w-screen">
       <Navbar />
       <div className="image h-1/3">
-        <div className="image-container relative h-full w-full">
+        <div className="image-container relative h-full w-full cursor-pointer">
           <Image
             src={post.image}
             alt="AtosBot, the VOLTEC robot"
@@ -27,7 +27,7 @@ const Post = ({ post, error }: Props) => {
           />
         </div>
       </div>
-      <div className="p-4 lg:p-14">
+      <div className="p-4 lg:p-14 bg-background-blue">
         <div className="max-w-6xl mx-auto">
           <div className="badges flex justify-start items-center gap-4 pb-4">
             {post.badges.map((i) => {
@@ -35,6 +35,7 @@ const Post = ({ post, error }: Props) => {
             })}
           </div>
           <div className="headings pt-4 lg:pt-0 pb-8">
+            <span className="date text-base font-mono text-white">{post.date ? post.date : new Date().toLocaleDateString()}</span>
             <h1 className="title text-white pb-5">{post.title}</h1>
             <hr />
           </div>

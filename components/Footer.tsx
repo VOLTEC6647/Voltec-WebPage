@@ -22,7 +22,7 @@ const Footer = () => {
           <Link href="/bitacora">
             <a className="hover:underline text-lg">Bitácora</a>
           </Link>
-          <Link href="/historia">
+          <Link href="/nuestra-historia">
             <a className="hover:underline text-lg">Nuestra Historia</a>
           </Link>
           <Link href="/patrocinadores">

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="navigation py-6 px-8 w-full text-lg">
+    <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg">
       <div className="links text-white md:flex justify-start items-center gap-6 font-space-grotesk font-bold hidden">
         <Link href="/">
           <a>Inicio</a>
@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href="/bitacora">
           <a>Bitácora</a>
         </Link>
-        <Link href="/historia">
+        <Link href="/nuestra-historia">
           <a>Nuestra Historia</a>
         </Link>
         <Link href="/patrocinadores">

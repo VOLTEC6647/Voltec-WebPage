@@ -18,7 +18,7 @@ export type BadgeTypes =
 const Badge = ({ type }: Props) => {
   return (
     <div
-      className={`badge badge-${type} bg-cover text-white tracking-tighter py-1 font-mono px-2 rounded-xl`}
+      className={`badge badge-${type} bg-cover text-xs text-white tracking-tighter py-1 font-mono px-2 rounded-xl`}
     >
       {type.substring(0, 1).toUpperCase() + type.substring(1)}
     </div>

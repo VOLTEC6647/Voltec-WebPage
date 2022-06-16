@@ -7,4 +7,5 @@ export default interface BlogPost {
     likes: number;
     image: string;
     badges: string[];
+    date: string;
 }

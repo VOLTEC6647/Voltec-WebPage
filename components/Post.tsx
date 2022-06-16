@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Badge, { BadgeTypes } from "../components/Badge";
-import formatLikes from '../lib/formatLikes';
-import Link from 'next/link'
+import formatLikes from "../lib/formatLikes";
+import Link from "next/link";
 import { ObjectId } from "mongodb";
 
 type Props = {
@@ -25,7 +25,7 @@ const Post = ({ id, title, badges, src, children, likes }: Props) => {
   };
 
   return (
-    <div className="bg-secondary-blue border-l-8 border-pink-400 p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="bg-secondary-blue border-l-8 border-pink-400 p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
       <div className="image h-52 lg:h-full w-full col-span-1 relative border-white rounded-xl border-2">
         <Image
           src={src}
@@ -43,21 +43,21 @@ const Post = ({ id, title, badges, src, children, likes }: Props) => {
             June 11, 2022
           </p>
           <div className="title flex justify-between items-center w-full lg:pt-16">
-            <h1 className="text-6xl text-white font-black font-manrope hover:underline hover:cursor-pointer">
+            <h1 className="text-3xl md:text-6xl text-white font-black font-manrope hover:underline hover:cursor-pointer">
               <Link href={`/blog/${id}`}>
-                <a>
-                  {title}
-                </a>
+                <a>{title}</a>
               </Link>
             </h1>
             <p className="text-sm text-white font-normal font-mono lg:block hidden">
               June 11, 2022
             </p>
           </div>
-          <p className="text-gray-300 font-manrope text-ellipsis pt-2">{children?.toString().substring(0, 200)}...</p>
+          <p className="text-gray-300 text-sm md:text-base font-manrope text-ellipsis pt-2">
+            {children?.toString().substring(0, 200)}...
+          </p>
         </div>
-        <div className="bottom-row flex justify-between items-center w-full pt-4">
-          <div className="badges flex gap-4 justify-start items-center">
+        <div className="bottom-row flex flex-col md:flex-row md:justify-between justify-start items-start md:items-center w-full pt-4 gap-4">
+          <div className="badges flex gap-2 justify-start items-center">
             {badges &&
               badges.map((badge: string, i: number) => (
                 <Badge key={i} type={badge} />
@@ -71,7 +71,7 @@ const Post = ({ id, title, badges, src, children, likes }: Props) => {
               {!liked ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
+                  className="h-5 md:h-8 w-5 md:w-8"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -86,7 +86,7 @@ const Post = ({ id, title, badges, src, children, likes }: Props) => {
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
+                  className="h-5 md:h-8 w-5 md:w-8"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -94,9 +94,7 @@ const Post = ({ id, title, badges, src, children, likes }: Props) => {
                 </svg>
               )}
             </div>
-            <div className="count text-lg">
-              {formatLikes(clientLikes)}
-            </div>
+            <div className="count text-lg">{formatLikes(clientLikes)}</div>
           </div>
         </div>
       </div>
