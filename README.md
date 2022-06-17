@@ -1,4 +1,4 @@
-![Website screenshot](https://medina.dev/voltec.medina.dev.png)
+![Website screenshot](https://medina.dev/_next/image?url=%2Fvoltec.medina.dev.png&w=3840&q=75)
 
 # VOLTEC Robotics 6647's Website ⚡️
 
