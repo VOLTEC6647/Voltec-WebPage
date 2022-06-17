@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
+  const [mobileNavShowing, setMobileNavShowing] = useState(false);
+
+  const toggleNav = () => {
+    console.log("toggle");
+    setMobileNavShowing(!mobileNavShowing);
+  };
+
   return (
-    <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg">
+    <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg z-50">
       <div className="links text-white md:flex justify-start items-center gap-6 font-space-grotesk font-bold hidden">
         <Link href="/">
           <a>Inicio</a>
@@ -21,7 +29,10 @@ const Navbar = () => {
           <a>Patrocinadores</a>
         </Link>
       </div>
-      <div className="hamburger block md:hidden text-white">
+      <div
+        className="hamburger block md:hidden text-white w-min cursor-pointer"
+        onClick={toggleNav}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10"
@@ -37,6 +48,7 @@ const Navbar = () => {
           />
         </svg>
       </div>
+      <MobileNavbar mobileNavShowing={mobileNavShowing} toggleNav={toggleNav} />
     </div>
   );
 };
