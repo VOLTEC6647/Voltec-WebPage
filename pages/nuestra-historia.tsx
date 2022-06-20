@@ -3,10 +3,60 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import Head from "next/head";
 
 const Historia: NextPage = () => {
   return (
     <div className="bg-background-blue h-full w-screen">
+      <Head>
+        <title>Nuestra Historia | VOLTEC Robotics 6647</title>
+        <meta
+          name="description"
+          content="Conoce la historia de VOLTEC Robotics 6647"
+        />
+
+        <meta
+          itemProp="name"
+          content="Nuestra Historia | VOLTEC Robotics 6647"
+        />
+        <meta
+          itemProp="description"
+          content="Conoce la historia de VOLTEC Robotics 6647"
+        />
+        <meta itemProp="image" content="https://voltec.medina.dev/voltec.png" />
+
+        <meta
+          property="og:url"
+          content="https://voltec.medina.dev/nuestra-historia"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Nuestra Historia | VOLTEC Robotics 6647"
+        />
+        <meta
+          property="og:description"
+          content="Conoce la historia de VOLTEC Robotics 6647"
+        />
+        <meta
+          property="og:image"
+          content="https://voltec.medina.dev/voltec.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Nuestra Historia | VOLTEC Robotics 6647"
+        />
+        <meta
+          name="twitter:description"
+          content="Conoce la historia de VOLTEC Robotics 6647"
+        />
+        <meta
+          name="twitter:image"
+          content="https://voltec.medina.dev/voltec.png"
+        />
+      </Head>
       <Navbar />
       <div className="image h-1/3">
         <div className="image-container relative h-64 w-full cursor-pointer">
