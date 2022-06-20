@@ -11,7 +11,7 @@ type Props = {
 
 const Blog = ({ posts }: Props) => {
   return (
-    <div className="blog bg-background-blue p-4 lg:p-14">
+    <div className="blog bg-background-blue p-4 lg:p-14 topography-darker">
       <div className="max-w-6xl mx-auto">
         <div className="headings pt-4 lg:pt-0 pb-8">
           <h1 className="title text-white pb-5 hover:underline">

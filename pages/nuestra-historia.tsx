@@ -77,7 +77,7 @@ const Historia: NextPage = () => {
             </h1>
             <hr />
             <p className="text-sm md:text-lg text-white font-manrope pt-4">
-              Somos Voltec, equipo de robótica que siempre está listo para
+              Somos VOLTEC, equipo de robótica que siempre está listo para
               desarrollar su potencial ante cualquier reto sin importar el nivel
               de dificultad. Sabemos valorar nuestra comunidad y el impacto que
               generamos en ella a través de la ciencia y tecnología, así com

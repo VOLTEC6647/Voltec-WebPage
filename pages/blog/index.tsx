@@ -17,6 +17,40 @@ const BlogPage: NextPage<Props> = ({ posts }) => {
     <div className="bg-background-blue h-screen w-screen">
       <Head>
         <title>Blog | VOLTEC Robotics 6647</title>
+        <meta
+          name="description"
+          content="Ve las publicaciones de VOLTEC Robotics 6647!"
+        />
+
+        <meta itemProp="name" content="Blog | VOLTEC Robotics 6647" />
+        <meta
+          itemProp="description"
+          content="Ve las publicaciones de VOLTEC Robotics 6647!"
+        />
+        <meta itemProp="image" content="https://voltec.medina.dev/voltec.png" />
+
+        <meta property="og:url" content="https://voltec.medina.dev/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Blog | VOLTEC Robotics 6647" />
+        <meta
+          property="og:description"
+          content="Ve las publicaciones de VOLTEC Robotics 6647!"
+        />
+        <meta
+          property="og:image"
+          content="https://voltec.medina.dev/voltec.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | VOLTEC Robotics 6647" />
+        <meta
+          name="twitter:description"
+          content="Ve las publicaciones de VOLTEC Robotics 6647!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://voltec.medina.dev/voltec.png"
+        />
       </Head>
       <Navbar />
       <div className="image h-1/3">
