@@ -66,9 +66,9 @@ const Home: NextPage<Props> = ({ posts }) => {
         <div className='bg-[url("/cover.jpeg")] absolute h-screen w-full bg-cover opacity-20'></div>
       </div>
       <Blog posts={posts} />
-      <section className="nuestra-historia-index bg-secondary-blue border-t-2 border-white md:py-14 p-4 md:px-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <section className="nuestra-historia-index bg-secondary-blue border-t-2 border-white md:py-14 pt-8 p-4 md:px-14 grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="content z-10 flex flex-col justify-center items-start gap-4">
-          <h1 className="title opacity-100 text-white font-sans tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-5xl font-black opacity-100 text-white font-sans tracking-tighter leading-none">
             Nuestra <span className="text-pink-400">Historia 👋</span>
           </h1>
           <p className="text-white font-manrope text-sm md:text-lg">
@@ -88,7 +88,7 @@ const Home: NextPage<Props> = ({ posts }) => {
             </a>
           </Link>
         </div>
-        <div className="images w-full h-72 md:h-full relative">
+        <div className="images w-full h-72 lg:h-full relative">
           <Image
             src="/DSC09099.png"
             layout="fill"
@@ -98,7 +98,7 @@ const Home: NextPage<Props> = ({ posts }) => {
             objectFit="cover"
           />
         </div>
-        <div className="w-full h-72 md:h-full relative">
+        <div className="w-full h-72 lg:h-full relative">
           <Image
             src={"/DSC09003-e.jpg"}
             layout={"fill"}

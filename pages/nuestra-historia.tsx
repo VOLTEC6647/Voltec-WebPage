@@ -7,7 +7,7 @@ import Head from "next/head";
 
 const Historia: NextPage = () => {
   return (
-    <div className="bg-background-blue h-full w-screen">
+    <div className="bg-background-blue h-screen w-screen">
       <Head>
         <title>Nuestra Historia | VOLTEC Robotics 6647</title>
         <meta
@@ -59,7 +59,7 @@ const Historia: NextPage = () => {
       </Head>
       <Navbar />
       <div className="image h-1/3">
-        <div className="image-container relative h-64 w-full cursor-pointer">
+        <div className="image-container relative h-full w-full cursor-pointer">
           <Image
             src={"/historia.jpeg"}
             alt="AtosBot, the VOLTEC robot"
@@ -72,7 +72,7 @@ const Historia: NextPage = () => {
       <div className="p-4 lg:p-14 bg-background-blue">
         <div className="max-w-6xl mx-auto h-full">
           <div className="headings pt-0 pb-8 flex flex-col gap-4">
-            <h1 className="title text-white pb-5 hover:underline">
+            <h1 className="title text-white pb-5">
               Nuestra Historia 📘
             </h1>
             <hr />

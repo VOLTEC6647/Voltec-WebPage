@@ -62,6 +62,9 @@ const MobileNavbar = ({ mobileNavShowing, toggleNav }: Props) => {
         <Link href="/patrocinadores">
           <a className="hover:underline">Patrocinadores</a>
         </Link>
+        <Link href="/contacto">
+          <a className="hover:underline">Contacto</a>
+        </Link>
       </div>
     </div>
   );

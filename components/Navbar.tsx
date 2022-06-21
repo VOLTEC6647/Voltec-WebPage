@@ -28,6 +28,9 @@ const Navbar = () => {
         <Link href="/patrocinadores">
           <a>Patrocinadores</a>
         </Link>
+        <Link href="/contacto">
+          <a>Contacto</a>
+        </Link>
       </div>
       <div
         className="hamburger block md:hidden text-white w-min cursor-pointer"
