@@ -8,6 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Contacto: NextPage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
 
   const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.target.value);
@@ -21,6 +22,8 @@ const Contacto: NextPage = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
+    setSending(true);
 
     const form = new FormData();
     form.append("address", email);
@@ -36,10 +39,15 @@ const Contacto: NextPage = () => {
 
     if (response.ok) {
       toast.success("El mensaje se envió con éxito!");
+    } else {
+      toast.error("Hubo un error al enviar el mensaje. Intente más tarde.");
     }
 
     const json = await response.json();
     console.log(json);
+    setSending(false);
+    setMessage("");
+    setEmail("");
   };
 
   return (
@@ -62,7 +70,7 @@ const Contacto: NextPage = () => {
             <h1 className="title text-white md:pb-5">Contacto 📩</h1>
             <p className="text-white font-manrope text-normal md:text-xl">
               <span className="text-pink-400 font-bold">
-                ¿Te formar parte de la familia VOLTEC?
+                ¿Te gustaría formar parte de la familia VOLTEC?
               </span>{" "}
               Podrás contactarnos a través de las siguientes redes sociales o
               por medio del formulario ubicado en la parte inferior.
@@ -71,7 +79,7 @@ const Contacto: NextPage = () => {
           <div className="social-media pt-4 md:pt-0">
             <div className="grid grid-cols-2 text-white font-manrope gap-2 md:gap-5">
               <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
-                <div className="icon w-8 h-8 text-white">
+                <div className="icon w-8 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
@@ -93,7 +101,7 @@ const Contacto: NextPage = () => {
                 </a>
               </div>
               <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
-                <div className="icon w-8 h-8 text-pink-400">
+                <div className="icon w-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                       fill={"currentcolor"}
@@ -111,7 +119,7 @@ const Contacto: NextPage = () => {
                 </a>
               </div>
               <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
-                <div className="icon w-8 h-8 text-pink-400">
+                <div className="icon w-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                       fill="currentcolor"
@@ -129,7 +137,7 @@ const Contacto: NextPage = () => {
                 </a>
               </div>
               <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
-                <div className="icon w-8 h-8 text-pink-400">
+                <div className="icon w-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                       fill={"currentcolor"}
@@ -148,7 +156,7 @@ const Contacto: NextPage = () => {
               </div>
               <div className="grid-item p-5 bg-secondary-blue topography border-2 border-gray-200 rounded-xl flex gap-4 justify-center items-start col-span-2 flex-col">
                 <div className="heading flex justify-start items-center gap-4">
-                  <div className="icon w-8 h-8 text-pink-400">
+                  <div className="icon w-8 text-pink-400">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
@@ -175,9 +183,11 @@ const Contacto: NextPage = () => {
                         Su correo
                       </label>
                       <input
+                        required={true}
                         type="text"
                         name="email"
                         id="email"
+                        value={email}
                         placeholder="robot@voltec6647.com"
                         className="p-2 bg-gray-900 w-full rounded-lg outline-none"
                         onChange={handleEmailChange}
@@ -191,6 +201,7 @@ const Contacto: NextPage = () => {
                         Mensaje
                       </label>
                       <textarea
+                        required={true}
                         name="message"
                         id="message"
                         className="w-full bg-gray-900 rounded-lg p-2 outline-none"
@@ -205,9 +216,40 @@ const Contacto: NextPage = () => {
                       <div className="submit">
                         <button
                           type="submit"
-                          className="bg-pink-400 hover:bg-pink-500 text-white rounded-lg py-3 px-14 w-full"
+                          className="bg-pink-400 hover:bg-pink-500 text-white text-sm md:text-lg rounded-lg py-3 px-14 w-full flex justify-center items-center h-12 md:h-16"
                         >
-                          Enviar mensaje
+                          {sending ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlnsXlink="http://www.w3.org/1999/xlink"
+                              width="200px"
+                              height="200px"
+                              viewBox="0 0 100 100"
+                              preserveAspectRatio="xMidYMid"
+                              className="mx-auto h-full"
+                            >
+                              <circle
+                                cx="50"
+                                cy="50"
+                                fill="none"
+                                stroke="#fdfdfd"
+                                strokeWidth="10"
+                                r="35"
+                                strokeDasharray="164.93361431346415 56.97787143782138"
+                              >
+                                <animateTransform
+                                  attributeName="transform"
+                                  type="rotate"
+                                  repeatCount="indefinite"
+                                  dur="1s"
+                                  values="0 50 50;360 50 50"
+                                  keyTimes="0;1"
+                                ></animateTransform>
+                              </circle>
+                            </svg>
+                          ) : (
+                            "Enviar mensaje"
+                          )}
                         </button>
                       </div>
                     </div>
