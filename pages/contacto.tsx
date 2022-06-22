@@ -3,8 +3,7 @@ import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast, { Toaster } from "react-hot-toast";
 
 const Contacto: NextPage = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +35,7 @@ const Contacto: NextPage = () => {
     });
 
     if (response.ok) {
-      toast.success('El mensaje se envió con éxito!')
+      toast.success("El mensaje se envió con éxito!");
     }
 
     const json = await response.json();
@@ -71,7 +70,7 @@ const Contacto: NextPage = () => {
           </div>
           <div className="social-media pt-4 md:pt-0">
             <div className="grid grid-cols-2 text-white font-manrope gap-2 md:gap-5">
-              <div className="grid-item p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
+              <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
                 <div className="icon w-8 h-8 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -88,12 +87,12 @@ const Contacto: NextPage = () => {
                   href="https://www.instagram.com/voltecrobotics6647/"
                   rel="noreferrer noopener"
                   target={"_blank"}
-                  className={"text-2xl md:text-4xl font-bold hover:underline"}
+                  className={"text-xl md:text-4xl font-bold hover:underline"}
                 >
                   Instagram
                 </a>
               </div>
-              <div className="grid-item p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
+              <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
                 <div className="icon w-8 h-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
@@ -106,12 +105,12 @@ const Contacto: NextPage = () => {
                   href="https://twitter.com/voltec6647"
                   rel="noreferrer noopener"
                   target={"_blank"}
-                  className={"text-2xl md:text-4xl font-bold hover:underline"}
+                  className={"text-xl md:text-4xl font-bold hover:underline"}
                 >
                   Twitter
                 </a>
               </div>
-              <div className="grid-item p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
+              <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
                 <div className="icon w-8 h-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
@@ -124,12 +123,12 @@ const Contacto: NextPage = () => {
                   href="https://www.facebook.com/VOLTECrobotics6647/"
                   rel="noreferrer noopener"
                   target={"_blank"}
-                  className={"text-2xl md:text-4xl font-bold hover:underline"}
+                  className={"text-xl md:text-4xl font-bold hover:underline"}
                 >
                   Facebook
                 </a>
               </div>
-              <div className="grid-item p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
+              <div className="grid-item p-3 md:p-5 topography border-2 border-gray-200 rounded-xl flex gap-4 justify-start items-center">
                 <div className="icon w-8 h-8 text-pink-400">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -142,7 +141,7 @@ const Contacto: NextPage = () => {
                   href="https://www.tiktok.com/@voltectok"
                   rel="noreferrer noopener"
                   target={"_blank"}
-                  className={"text-2xl md:text-4xl font-bold hover:underline"}
+                  className={"text-xl md:text-4xl font-bold hover:underline"}
                 >
                   TikTok
                 </a>

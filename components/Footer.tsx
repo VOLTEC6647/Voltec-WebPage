@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 bg-gray-900 border-t-2 border-white pt-4 md:pt-14 p-14 font-manrope gap-8 md:gap-4">
-      <div className="voltec-logo relative flex justify-start items-center h-56 overflow-hidden col-span-1">
-        <img src="/voltec.png" alt="voltec" className="h-1/2 xl:h-full" />
+    <div className="grid grid-cols-1 lg:grid-cols-3 bg-gray-900 border-t-2 border-white pt-4 md:pt-14 p-5 md:p-14 font-manrope gap-2 md:gap-4">
+      <div className="voltec-logo relative flex justify-start items-center h-full overflow-hidden col-span-1 py-6 md:py-0">
+        <img src="/voltec.png" alt="voltec" className="h-36 md:h-56 object-contain" />
         <h1 className="text-5xl xl:text-7xl font-black tracking-tighter font-sans text-white leading-none">
           VOLTEC <br /> 6647
         </h1>
