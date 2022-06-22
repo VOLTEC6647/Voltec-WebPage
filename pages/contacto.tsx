@@ -1,10 +1,48 @@
 import { NextPage } from "next";
-import React from "react";
+import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Contacto: NextPage = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange: ChangeEventHandler<HTMLTextAreaElement> = (
+    event
+  ) => {
+    setMessage(event.target.value);
+  };
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+    form.append("address", email);
+    form.append("emailContent", message);
+
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      body: JSON.stringify({
+        address: email,
+        emailContent: message,
+      }),
+    });
+
+    if (response.ok) {
+      toast.success('El mensaje se envió con éxito!')
+    }
+
+    const json = await response.json();
+    console.log(json);
+  };
+
   return (
     <div className="bg-background-blue h-screen w-screen">
       <Navbar />
@@ -129,7 +167,7 @@ const Contacto: NextPage = () => {
                   </p>
                 </div>
                 <div className="form w-full">
-                  <form className="flex flex-col gap-4">
+                  <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                     <div className="email">
                       <label
                         htmlFor="email"
@@ -142,7 +180,8 @@ const Contacto: NextPage = () => {
                         name="email"
                         id="email"
                         placeholder="robot@voltec6647.com"
-                        className="p-2 bg-gray-900 w-full rounded-lg"
+                        className="p-2 bg-gray-900 w-full rounded-lg outline-none"
+                        onChange={handleEmailChange}
                       />
                     </div>
                     <div className="email">
@@ -155,10 +194,12 @@ const Contacto: NextPage = () => {
                       <textarea
                         name="message"
                         id="message"
-                        className="w-full bg-gray-900 rounded-lg p-2"
+                        className="w-full bg-gray-900 rounded-lg p-2 outline-none"
                         placeholder="Escriba su mensaje aquí..."
                         cols={30}
                         rows={10}
+                        value={message}
+                        onChange={handleMessageChange}
                       ></textarea>
                     </div>
                     <div className="buttons">
@@ -179,6 +220,7 @@ const Contacto: NextPage = () => {
         </div>
       </div>
       <Footer />
+      <Toaster />
     </div>
   );
 };

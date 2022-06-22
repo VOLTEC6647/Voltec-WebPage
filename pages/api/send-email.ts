@@ -6,6 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { address, emailContent } = JSON.parse(req.body);
+
   if (req.method != "POST") {
     res.status(405).send({
       message: "Method not allowed, please use POST.",
@@ -21,7 +23,7 @@ export default async function handler(
   }
 
   // * Verify destination address is set
-  if (!req.body.address) {
+  if (!address) {
     res.status(400).send({
       message: "Missing destination address.",
     });
@@ -29,7 +31,7 @@ export default async function handler(
   }
 
   // * Verify email content isn't empty
-  if (!req.body.emailContent) {
+  if (!emailContent) {
     res.status(400).send({
       message: "Missing email content (it cannot be empty).",
     });
@@ -41,24 +43,23 @@ export default async function handler(
       {
         to: [
           {
-            email: req.body.address,
+            email: address,
           },
         ],
       },
     ],
     from: {
       email: "daniel@medina.com",
-      name: "",
+      name: "VOLTEC Robotics 6647",
     },
     replyTo: {
-      email: "noreply@voltec6647.com",
-      name: "VOLTEC Rotics 6647",
+      email: address,
     },
-    subject: `VOLTEC Inquiry from ${req.body.address}`,
+    subject: `VOLTEC Inquiry from ${address}`,
     templateId: "d-ca1cb5ff686b4a5291dac93ff62d64ae",
     dynamicTemplateData: {
-      email: req.body.address,
-      message_content: req.body.emailContent,
+      email: address,
+      message_content: emailContent,
     },
   };
 
