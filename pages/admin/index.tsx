@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { getSession } from "next-auth/react";
+import { NextPageContext } from "next";
 
 const index = () => {
   return (
@@ -55,7 +57,7 @@ const index = () => {
                 />
               </div>
               <a className="text-2xl md:text-4xl text-white font-black hover:underline">
-              Administrar Usuarios 👨‍💻
+                Administrar Usuarios 👨‍💻
               </a>
             </div>
           </Link>
@@ -67,3 +69,22 @@ const index = () => {
 };
 
 export default index;
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      props: {
+        session,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+}
