@@ -10,9 +10,10 @@ import BlogPost from "../../lib/types/BlogPost";
 
 type Props = {
   posts: BlogPost[];
+  error: any;
 };
 
-const BlogPage: NextPage<Props> = ({ posts }) => {
+const BlogPage: NextPage<Props> = ({ posts, error }) => {
   return (
     <div className="bg-background-blue h-screen w-screen">
       <Head>
@@ -64,7 +65,7 @@ const BlogPage: NextPage<Props> = ({ posts }) => {
           />
         </div>
       </div>
-      <Blog posts={posts} />
+      <Blog error={error} posts={posts} />
       <Footer />
     </div>
   );
@@ -88,7 +89,7 @@ export async function getServerSideProps(context: NextPageContext) {
     console.log(e);
     return {
       props: {
-        error: true,
+        error: JSON.stringify(e),
       },
     };
   }

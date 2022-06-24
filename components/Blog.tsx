@@ -7,9 +7,10 @@ import BlogPost from "../lib/types/BlogPost";
 
 type Props = {
   posts: BlogPost[];
+  error: any;
 };
 
-const Blog = ({ posts }: Props) => {
+const Blog = ({ posts, error }: Props) => {
   return (
     <div className="blog bg-background-blue p-4 lg:p-14 topography-darker">
       <div className="max-w-6xl mx-auto">
@@ -38,7 +39,14 @@ const Blog = ({ posts }: Props) => {
           ) : (
             <div className="h-[50vh] flex justify-center items-center">
               <p className="text-white text-center text-5xl tracking-tighter font-manrope font-bold">
-                No posts yet
+                {error ? (
+                  <p>
+                    Hubo un <span className="text-red-400">error</span> al
+                    cargar las publicaciones
+                  </p>
+                ) : (
+                  "No posts yet"
+                )}
               </p>
             </div>
           )}

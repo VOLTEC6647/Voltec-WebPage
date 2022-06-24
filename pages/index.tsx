@@ -6,14 +6,17 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
 import Image from "next/image";
+import { Toaster, toast } from "react-hot-toast";
+import { useEffect } from "react";
 
 import BlogPost from "../lib/types/BlogPost";
 
 type Props = {
   posts: BlogPost[];
+  error: any;
 };
 
-const Home: NextPage<Props> = ({ posts }) => {
+const Home: NextPage<Props> = ({ posts, error }) => {
   return (
     <div className="app">
       <Head>
@@ -65,7 +68,7 @@ const Home: NextPage<Props> = ({ posts }) => {
         </div>
         <div className='bg-[url("/cover.jpeg")] absolute h-screen w-full bg-cover opacity-20'></div>
       </div>
-      <Blog posts={posts} />
+      <Blog posts={posts} error={error} />
       <section className="nuestra-historia-index bg-secondary-blue border-t-2 border-white md:py-14 pt-8 p-4 md:px-14 grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="content z-10 flex flex-col justify-center items-start gap-4">
           <h1 className="text-4xl md:text-5xl font-black opacity-100 text-white font-sans tracking-tighter leading-none">
@@ -133,7 +136,7 @@ export async function getServerSideProps(context: NextPageContext) {
     console.log(e);
     return {
       props: {
-        error: true,
+        error: JSON.stringify(e),
       },
     };
   }
