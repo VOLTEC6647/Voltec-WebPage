@@ -10,7 +10,7 @@ type Props = {
 
 const Sidebar = ({ session }: Props) => {
   return (
-    <div className="bg-neutral-900 w-full md:w-96 h-full p-6 text-white flex flex-col gap-2">
+    <div className="bg-neutral-900 w-full md:w-80 fixed h-full p-6 text-white flex flex-col gap-2 md:border-r-2 border-neutral-800">
       <div className="sidebar-logo flex justify-start items-center">
         <div className="relative h-28 w-28 border-2 border-white rounded-full">
           <Image
@@ -24,7 +24,7 @@ const Sidebar = ({ session }: Props) => {
       </div>
       <h1 className="font-bold text-4xl">
         <Link href="/admin">
-          <a className="hover:underline">Dashboard</a>
+          <a className="hover:underline">{session?.user?.name}</a>
         </Link>
       </h1>
       <div className="flex-menu flex flex-col justify-between items-start h-full">
