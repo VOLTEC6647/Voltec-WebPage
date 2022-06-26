@@ -93,3 +93,12 @@
     #a7489b 83.333%
   );
 }
+
+.admin-dashboard {
+  background: rgb(22, 38, 52);
+  background: linear-gradient(
+    153deg,
+    rgba(22, 38, 52, 1) 70%,
+    rgba(152, 33, 95, 1) 100%
+  );
+}

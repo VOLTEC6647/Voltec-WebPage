@@ -11,6 +11,7 @@ module.exports = {
         "secondary-blue": "#06283D",
         "background-blue": "#141F25",
         "darker-blue": "#10162F",
+        "background-blue-darker": "#0b1114"
       },
       fontFamily: {
         "space-grotesk": ["Space Grotesk", "sans-serif"],

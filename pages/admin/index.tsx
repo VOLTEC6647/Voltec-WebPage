@@ -4,71 +4,119 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import { getSession } from "next-auth/react";
-import { NextPageContext } from "next";
+import { NextPage, NextPageContext } from "next";
+import Sidebar from "../../components/Sidebar";
+import { useSession } from "next-auth/react";
 
-const index = () => {
+const Index: NextPage = () => {
+  const { data: session, status } = useSession();
   return (
-    <div className="bg-background-blue h-screen">
-      <Navbar />
-      <div className="image h-1/3">
-        <div className="image-container relative h-full w-full cursor-pointer">
-          <Image
-            src={"/chip.jpeg"}
-            alt="AtosBot, the VOLTEC robot"
-            layout="fill"
-            objectFit="cover"
-            className="blur-md"
-          />
+    <div className="h-screen flex">
+      <Sidebar session={session} />
+      <div className="content bg-gray-200 text-black">
+        <div className="top-bar flex justify-between items-center py-4 px-4 bg-gray-300">
+          <div className="heading">
+            <h1 className="text-4xl text-gray-900 font-semibold tracking-tighter">
+              Welcome, {session?.user?.name || "User"}
+            </h1>
+          </div>
+          <div className="search flex justify-center items-center shadow-sm">
+            <input
+              type="text"
+              className="bg-gray-200 px-3 w-72 py-3 rounded-l-lg"
+              name="search"
+              id="search"
+              placeholder="Search..."
+            />
+            <button className="h-full p-3 bg-secondary-blue rounded-r-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={3}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="w-full px-5">
+          <div className="user-actions-heading pt-8 pb-2">
+            <h2 className="text-gray-600 font-manrope text-2xl font-bold">
+              User Actions
+            </h2>
+          </div>
+          <div className="options grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/admin/settings">
+              <a className="option bg-background-blue hover:bg-background-blue-darker p-4 text-white rounded-lg">
+                <h2 className="text-2xl font-manrope font-bold">Settings ⚙️</h2>
+                <p className="text-gray-300 font-manrope">
+                  Change the settings of your user account.
+                </p>
+              </a>
+            </Link>
+            <Link href="/admin/public-profile">
+              <a className="option bg-background-blue hover:bg-background-blue-darker p-4 text-white rounded-lg">
+                <h2 className="text-2xl font-manrope font-bold">
+                  Public Profile 👁
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  View how your public voltec6647.com profile looks.
+                </p>
+              </a>
+            </Link>
+          </div>
+          <div className="user-actions-heading pt-8 pb-2">
+            <h2 className="text-gray-600 font-manrope text-2xl font-bold">
+              Site Actions
+            </h2>
+          </div>
+          <div className="options grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/admin/blog">
+              <a className="option bg-background-blue hover:bg-background-blue-darker p-4 text-white rounded-lg">
+                <h2 className="text-2xl font-manrope font-bold">
+                  Blog Posts 💬
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  Manage blog posts, add new ones, delete, and more!
+                </p>
+              </a>
+            </Link>
+            <Link href="/admin/users">
+              <a className="option bg-background-blue hover:bg-background-blue-darker p-4 text-white rounded-lg">
+                <h2 className="text-2xl font-manrope font-bold">
+                  Manage Admins 🔑
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  Manage users who have administrator access to the VOLTEC
+                  website.
+                </p>
+              </a>
+            </Link>
+            <Link href="/admin/newspaper">
+              <a className="option bg-background-blue hover:bg-background-blue-darker p-4 text-white rounded-lg">
+                <h2 className="text-2xl font-manrope font-bold">
+                  Upload Newspaper 📰
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  Upload the weekly VOLTEC newspaper.
+                </p>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto py-14 bg-background-blue">
-        <div className="headings pt-4 lg:pt-0 pb-8 px-5">
-          <h1 className="title text-white pb-5">
-            Panel de <span className="text-pink-400">Administración</span> 🔧
-          </h1>
-          <hr />
-        </div>
-        <div className="tools grid grid-cols-1 md:grid-cols-2 gap-4 px-5">
-          <Link href="/admin/blog">
-            <div className="tool topography p-5 border-2 border-gray-200 rounded-xl cursor-pointer flex flex-col gap-4">
-              <div className="relative h-80">
-                <Image
-                  src={"/newspaper.jpeg"}
-                  layout="fill"
-                  alt="Newspaper image"
-                  className="rounded-xl"
-                  objectFit="cover"
-                />
-              </div>
-              <a className="text-2xl md:text-4xl text-white font-black hover:underline">
-                Administrar Blog 💬
-              </a>
-            </div>
-          </Link>
-          <Link href="/admin/users">
-            <div className="tool topography p-5 border-2 border-gray-200 rounded-xl cursor-pointer flex flex-col gap-4">
-              <div className="relative h-80">
-                <Image
-                  src={"/office.jpeg"}
-                  layout="fill"
-                  alt="Newspaper image"
-                  className="rounded-xl"
-                  objectFit="cover"
-                />
-              </div>
-              <a className="text-2xl md:text-4xl text-white font-black hover:underline">
-                Administrar Usuarios 👨‍💻
-              </a>
-            </div>
-          </Link>
-        </div>
-      </div>
-      <Footer />
     </div>
   );
 };
 
-export default index;
+export default Index;
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -76,7 +124,7 @@ export async function getServerSideProps(context: NextPageContext) {
   if (session) {
     return {
       props: {
-        session,
+        session: session,
       },
     };
   } else {
