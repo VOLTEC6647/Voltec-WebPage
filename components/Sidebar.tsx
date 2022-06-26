@@ -5,12 +5,12 @@ import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
 
 type Props = {
-    session: Session | null
-}
+  session: Session | null;
+};
 
 const Sidebar = ({ session }: Props) => {
   return (
-    <div className="bg-background-blue w-96 h-full p-5 text-white flex flex-col gap-2">
+    <div className="bg-neutral-900 w-full md:w-96 h-full p-6 text-white flex flex-col gap-2">
       <div className="sidebar-logo flex justify-start items-center">
         <div className="relative h-28 w-28 border-2 border-white rounded-full">
           <Image
@@ -22,16 +22,20 @@ const Sidebar = ({ session }: Props) => {
           />
         </div>
       </div>
-      <h1 className="font-bold text-4xl">Dashboard</h1>
+      <h1 className="font-bold text-4xl">
+        <Link href="/admin">
+          <a className="hover:underline">Dashboard</a>
+        </Link>
+      </h1>
       <div className="flex-menu flex flex-col justify-between items-start h-full">
         <div className="main-menu w-full">
           <div className="actions-menu w-full">
-            <h1 className="font-manrope py-2 text-xl font-bold text-gray-400 w-full">
+            <h1 className="font-manrope pb-2 text-xl font-bold text-gray-400 w-full">
               User actions
             </h1>
             <div className="list-none gap-2 flex flex-col">
               <Link href="/admin/settings">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -55,7 +59,7 @@ const Sidebar = ({ session }: Props) => {
                 </a>
               </Link>
               <Link href="/admin/public-profile">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -79,7 +83,7 @@ const Sidebar = ({ session }: Props) => {
                 </a>
               </Link>
               <Link href="/admin/appearance">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -105,7 +109,7 @@ const Sidebar = ({ session }: Props) => {
             </h1>
             <div className="list-none gap-2 flex flex-col w-full">
               <Link href="/admin/blog">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -124,7 +128,7 @@ const Sidebar = ({ session }: Props) => {
                 </a>
               </Link>
               <Link href="/admin/users">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -143,7 +147,7 @@ const Sidebar = ({ session }: Props) => {
                 </a>
               </Link>
               <Link href="/admin/newspaper">
-                <a className="hover:underline w-full hover:bg-gray-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -170,7 +174,7 @@ const Sidebar = ({ session }: Props) => {
               onClick={() => {
                 signOut();
               }}
-              className="hover:underline w-full bg-pink-700 hover:bg-red-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2"
+              className=" w-full bg-pink-700 hover:bg-red-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
