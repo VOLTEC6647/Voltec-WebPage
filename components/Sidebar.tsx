@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
+import { motion } from "framer-motion";
 
 type Props = {
   session: Session | null;
@@ -170,11 +171,14 @@ const Sidebar = ({ session }: Props) => {
         </div>
         <div className="actions-menu pt-4 w-full">
           <div className="list-none gap-2 flex flex-col w-full">
-            <button
+            <motion.button
               onClick={() => {
                 signOut();
               }}
-              className=" w-full bg-pink-700 hover:bg-red-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2"
+              whileHover={{
+                boxShadow: "0px 0px 10px #361323",
+              }}
+              className="w-full bg-pink-700 hover:bg-pink-900 p-3 px-3 rounded-lg flex justify-start items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +195,7 @@ const Sidebar = ({ session }: Props) => {
                 />
               </svg>
               <span>Log out</span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

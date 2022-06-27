@@ -4,6 +4,17 @@ import AdminLayout from "../../components/AdminLayout";
 import { getSession } from "next-auth/react";
 import { NextPage, NextPageContext } from "next";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { scale: 0.85 },
+  show: {
+    scale: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const Index: NextPage = () => {
   const { data: session, status } = useSession();
@@ -15,62 +26,94 @@ const Index: NextPage = () => {
             User Actions
           </h2>
         </div>
-        <div className="options grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link href="/admin/settings">
-            <a className="option bg-neutral-800 hover:bg-neutral-900  p-4 text-white rounded-lg">
-              <h2 className="text-2xl font-manrope font-bold">Settings ⚙️</h2>
-              <p className="text-gray-300 font-manrope">
-                Change the settings of your user account.
-              </p>
-            </a>
-          </Link>
-          <Link href="/admin/public-profile">
-            <a className="option bg-neutral-800 hover:bg-neutral-900  p-4 text-white rounded-lg">
-              <h2 className="text-2xl font-manrope font-bold">
-                Public Profile 👁
-              </h2>
-              <p className="text-gray-300 font-manrope">
-                View how your public voltec6647.com profile looks.
-              </p>
-            </a>
-          </Link>
-        </div>
+        <motion.div
+          initial={{ scale: 0.85 }}
+          animate={{ scale: 1 }}
+          className="options grid grid-cols-1 md:grid-cols-3 gap-4"
+        >
+          <motion.div
+            whileHover={{ scale: 1.03, rotate: -2 }}
+            className="option bg-neutral-800 p-4 text-white rounded-lg"
+          >
+            <Link href="/admin/settings">
+              <a>
+                <h2 className="text-2xl font-manrope font-bold">Settings ⚙️</h2>
+                <p className="text-gray-300 font-manrope">
+                  Change the settings of your user account.
+                </p>
+              </a>
+            </Link>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.03, rotate: -2 }}
+            className="option bg-neutral-800 p-4 text-white rounded-lg"
+          >
+            <Link href="/admin/public-profile">
+              <a>
+                <h2 className="text-2xl font-manrope font-bold">
+                  Public Profile 👁
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  View how your public voltec6647.com profile looks.
+                </p>
+              </a>
+            </Link>
+          </motion.div>
+        </motion.div>
         <div className="user-actions-heading pt-8 pb-2">
           <h2 className="text-gray-400 font-manrope text-2xl font-bold">
             Site Actions
           </h2>
         </div>
-        <div className="options grid grid-cols-1 md:grid-cols-3 gap-4">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="options grid grid-cols-1 md:grid-cols-3 gap-4"
+        >
           <Link href="/admin/blog">
-            <a className="option bg-neutral-800 hover:bg-neutral-900  p-4 text-white rounded-lg">
+            <motion.a
+              whileHover={{ scale: 1.03, rotate: -2 }}
+              className="option bg-neutral-800 p-4 text-white rounded-lg"
+            >
               <h2 className="text-2xl font-manrope font-bold">Blog Posts 💬</h2>
               <p className="text-gray-300 font-manrope">
                 Manage blog posts, add new ones, delete, and more!
               </p>
-            </a>
+            </motion.a>
           </Link>
-          <Link href="/admin/users">
-            <a className="option bg-neutral-800 hover:bg-neutral-900  p-4 text-white rounded-lg">
-              <h2 className="text-2xl font-manrope font-bold">
-                Manage Admins 🔑
-              </h2>
-              <p className="text-gray-300 font-manrope">
-                Manage users who have administrator access to the VOLTEC
-                website.
-              </p>
-            </a>
-          </Link>
-          <Link href="/admin/newspaper">
-            <a className="option bg-neutral-800 hover:bg-neutral-900  p-4 text-white rounded-lg">
-              <h2 className="text-2xl font-manrope font-bold">
-                Upload Newspaper 📰
-              </h2>
-              <p className="text-gray-300 font-manrope">
-                Upload the weekly VOLTEC newspaper.
-              </p>
-            </a>
-          </Link>
-        </div>
+          <motion.div
+            whileHover={{ scale: 1.03, rotate: -2 }}
+            className="option bg-neutral-800 p-4 text-white rounded-lg"
+          >
+            <Link href="/admin/users">
+              <a>
+                <h2 className="text-2xl font-manrope font-bold">
+                  Manage Admins 🔑
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  Manage users who have administrator access to the VOLTEC
+                  website.
+                </p>
+              </a>
+            </Link>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.03, rotate: -2 }}
+            className="option bg-neutral-800 p-4 text-white rounded-lg"
+          >
+            <Link href="/admin/newspaper">
+              <a>
+                <h2 className="text-2xl font-manrope font-bold">
+                  Upload Newspaper 📰
+                </h2>
+                <p className="text-gray-300 font-manrope">
+                  Upload the weekly VOLTEC newspaper.
+                </p>
+              </a>
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </AdminLayout>
   );
