@@ -4,18 +4,17 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 type Props = {
   session: Session | null;
 };
 
 const Sidebar = ({ session }: Props) => {
+  const router = useRouter();
+
   return (
     <motion.div
-      layoutId="sidenav"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
       className="bg-neutral-900 w-full md:w-80 fixed h-full p-6 text-white flex flex-col gap-2 md:border-r-2 border-neutral-800"
     >
       <div className="sidebar-logo flex justify-start items-center">

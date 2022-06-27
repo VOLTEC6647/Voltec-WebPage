@@ -2,6 +2,7 @@ import React from "react";
 import AdminLayout from "../../components/AdminLayout";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Settings = () => {
   const { data: session, status } = useSession();
@@ -9,9 +10,14 @@ const Settings = () => {
   return (
     <AdminLayout title="Settings" image="/flowers.jpeg">
       <div className="heading pb-5">
-        <h1 className="text-6xl text-white font-bold">Settings</h1>
+        <motion.h1
+          layoutId="settings-title"
+          className="text-6xl text-white font-bold"
+        >
+          Settings
+        </motion.h1>
       </div>
-      <div className="content text-white w-full">
+      <motion.div className="content text-white w-full">
         <div className="account flex flex-col gap-4">
           <h2 className="text-3xl text-gray-200 font-bold font-manrope">
             Account <span className="text-pink-500">Settings</span> ⚙️
@@ -47,7 +53,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </AdminLayout>
   );
 };

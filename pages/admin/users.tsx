@@ -6,6 +6,7 @@ import clientPromise from "../../lib/mongodb";
 import User from "../../lib/types/User";
 import Footer from "../../components/Footer";
 import AdminLayout from "../../components/AdminLayout";
+import { motion } from "framer-motion";
 
 type Props = {
   admins: User[];
@@ -14,12 +15,20 @@ type Props = {
 const Users: NextPage<Props> = ({ admins }) => {
   console.log(admins);
   return (
-    <AdminLayout title="Manage Administrators">
-      <div className="w-full flex flex-col gap-4 p-5">
+    <AdminLayout title="Manage Administrators" image="/flowers.jpeg">
+      <div className="heading pb-5">
+        <motion.h1
+          layoutId="settings-title"
+          className="text-6xl text-white font-bold"
+        >
+          Manage Administrators
+        </motion.h1>
+      </div>
+      <div className="w-full flex flex-col gap-4">
         {admins ? (
           admins.map((admin: User) => {
             return (
-              <div
+              <motion.div
                 className="user bg-neutral-800 rounded-xl p-3 md:p-4"
                 key={admin._id.toString()}
               >
@@ -80,7 +89,7 @@ const Users: NextPage<Props> = ({ admins }) => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })
         ) : (

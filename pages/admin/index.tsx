@@ -35,7 +35,7 @@ const Index: NextPage = () => {
           >
             <Link href="/admin/settings">
               <a>
-                <h2 className="text-2xl font-manrope font-bold">Settings ⚙️</h2>
+                <motion.h2 layoutId="settings-title" className="text-2xl font-manrope font-bold">Settings ⚙️</motion.h2>
                 <p className="text-gray-300 font-manrope">
                   Change the settings of your user account.
                 </p>
