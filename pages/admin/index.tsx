@@ -19,12 +19,10 @@ const container = {
 const Index: NextPage = () => {
   const { data: session, status } = useSession();
   return (
-    <AdminLayout title="Administrator Dashboard">
-      <div className="w-full px-5">
-        <div className="user-actions-heading pt-8 pb-2">
-          <h2 className="text-gray-400 font-manrope text-2xl font-bold">
-            User Actions
-          </h2>
+    <AdminLayout title="Administrator Dashboard" image="/flowers.jpeg">
+      <div className="w-full">
+        <div className="heading pb-5">
+          <h1 className="text-6xl text-white font-bold">Dashboard</h1>
         </div>
         <motion.div
           initial={{ scale: 0.85 }}
