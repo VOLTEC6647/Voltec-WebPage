@@ -11,31 +11,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg z-50">
-      <div className="links text-white md:flex justify-start items-center gap-6 font-space-grotesk font-bold hidden">
-        <Link href="/">
-          <a>Inicio</a>
-        </Link>
-        <Link href="/blog">
-          <a>Blog</a>
-        </Link>
-        <Link href="/bitacora">
-          <a>Bitácora</a>
-        </Link>
-        <Link href="/nuestra-historia">
-          <a>Nuestra Historia</a>
-        </Link>
-        <Link href="/patrocinadores">
-          <a>Patrocinadores</a>
-        </Link>
-        <Link href="/contacto">
-          <a>Contacto</a>
-        </Link>
-      </div>
-      <div
-        className="hamburger block md:hidden text-white w-min cursor-pointer"
-        onClick={toggleNav}
-      >
+    <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg z-50 flex justify-between items-center">
+      <div className="hamburger-icon text-white justify-start items-center gap-6 font-space-grotesk font-bold">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10"
@@ -51,7 +28,12 @@ const Navbar = () => {
           />
         </svg>
       </div>
-      <MobileNavbar mobileNavShowing={mobileNavShowing} toggleNav={toggleNav} />
+      <h1 className="font-space-grotesk font-medium text-white">
+        VOLTEC Robotics 6647
+      </h1>
+      <Link href="/contacto">
+        <a className="underline text-sm text-white">Contacto</a>
+      </Link>
     </div>
   );
 };
