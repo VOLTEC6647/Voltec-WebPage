@@ -56,7 +56,7 @@ const Home: NextPage<Props> = ({ posts, error }) => {
           content="https://voltec.medina.dev/voltec.png"
         />
       </Head>
-      <div className="w-full h-[100vh] bg-hero-blue">
+      <div className="w-full h-screen bg-hero-blue">
         <div className="content absolute min-h-screen flex justify-between items-start flex-col z-20">
           <Navbar />
           <div className="hero w-screen flex h-full justify-center items-start flex-col p-4 md:px-8 gap-4">
@@ -64,7 +64,8 @@ const Home: NextPage<Props> = ({ posts, error }) => {
               VOLTEC <br /> <span className="text-accent-blue">6647</span>
             </h1>
             <p className="text-left text-xl md:text-4xl font-manrope text-white font-medium">
-              Be <span className="text-yellow-500 font-black">Bold</span>, Be VOLTEC
+              Be <span className="text-yellow-500 font-black">Bold</span>, Be
+              VOLTEC
             </p>
           </div>
           <div className="bottom-row px-4 py-8 md:px-8 flex justify-between items-center w-full">
@@ -109,7 +110,7 @@ const Home: NextPage<Props> = ({ posts, error }) => {
             </div>
           </div>
         </div>
-        <div className='bg-[url("/cover.jpeg")] absolute h-full w-full bg-cover opacity-10'></div>
+        <div className='bg-[url("/cover.jpeg")] absolute min-h-screen w-full bg-cover opacity-10'></div>
       </div>
       <Blog posts={posts} error={error} />
       <section className="nuestra-historia-index bg-secondary-blue border-t-2 border-white md:py-14 pt-8 p-4 md:px-14 grid grid-cols-1 lg:grid-cols-3 gap-5">
