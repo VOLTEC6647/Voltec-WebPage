@@ -9,11 +9,11 @@ module.exports = {
       colors: {
         "primary-blue": "#25274F",
         "secondary-blue": "#06283D",
-        "background-blue": "#141F25",
+        "background-blue": "#0F1520",
         "darker-blue": "#10162F",
         "background-blue-darker": "#0b1114",
         dark: "#141414",
-        "hero-blue": "#0F1020",
+        "hero-blue": "#0F1520",
         "accent-blue": "#588AB8",
       },
       fontFamily: {

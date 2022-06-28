@@ -57,19 +57,19 @@ const Home: NextPage<Props> = ({ posts, error }) => {
         />
       </Head>
       <div className="w-full h-[100vh] bg-hero-blue">
-        <div className="content absolute h-[85vh] z-10">
+        <div className="content absolute min-h-screen flex justify-between items-start flex-col z-20">
           <Navbar />
           <div className="hero w-screen flex h-full justify-center items-start flex-col p-4 md:px-8 gap-4">
-            <h1 className="text-7xl lg:text-10xl font-black opacity-100 text-white font-sans tracking-tighter leading-squish w-full">
+            <h1 className="text-8xl lg:text-10xl font-black opacity-100 text-white font-sans tracking-tighter leading-squish w-full">
               VOLTEC <br /> <span className="text-accent-blue">6647</span>
             </h1>
             <p className="text-left text-xl md:text-4xl font-manrope text-white font-medium">
-              Be <span className="text-yellow-500">Bold</span>, Be VOLTEC
+              Be <span className="text-yellow-500 font-black">Bold</span>, Be VOLTEC
             </p>
           </div>
-          <div className="bottom-row px-4 md:px-8 flex justify-between items-center w-full">
-            <div className="social-icons text-accent-blue flex justify-start items-center gap-5">
-              <div className="icon w-8 h-8">
+          <div className="bottom-row px-4 py-8 md:px-8 flex justify-between items-center w-full">
+            <div className="social-icons text-accent-blue flex justify-start items-center gap-2 md:gap-5">
+              <div className="icon w-5 h-5 md:w-8 md:h-8">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     fill="currentcolor"
@@ -77,7 +77,7 @@ const Home: NextPage<Props> = ({ posts, error }) => {
                   />
                 </svg>
               </div>
-              <div className="icon w-8 h-8">
+              <div className="icon w-5 h-5 md:w-8 md:h-8">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     fill={"currentcolor"}
@@ -85,7 +85,7 @@ const Home: NextPage<Props> = ({ posts, error }) => {
                   />
                 </svg>
               </div>
-              <div className="icon w-8 h-8">
+              <div className="icon w-5 h-5 md:w-8 md:h-8">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     fill="currentcolor"
@@ -93,7 +93,7 @@ const Home: NextPage<Props> = ({ posts, error }) => {
                   />
                 </svg>
               </div>
-              <div className="icon w-8 h-8">
+              <div className="icon w-5 h-5 md:w-8 md:h-8">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     fill={"currentcolor"}

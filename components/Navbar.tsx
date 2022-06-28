@@ -32,7 +32,7 @@ const Navbar = () => {
         VOLTEC Robotics 6647
       </h1>
       <Link href="/contacto">
-        <a className="underline text-sm text-white">Contacto</a>
+        <a className="underline text-sm text-white hidden md:block">Contacto</a>
       </Link>
     </div>
   );
