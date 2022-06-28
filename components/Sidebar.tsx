@@ -14,29 +14,33 @@ const Sidebar = ({ session }: Props) => {
   const router = useRouter();
 
   return (
-    <motion.div
-      className="bg-neutral-900 w-full md:w-80 fixed h-full p-6 text-white flex flex-col gap-2 md:border-r-2 border-neutral-800"
-    >
-      <div className="sidebar-logo flex justify-start items-center">
-        <div className="relative h-28 w-28 border-2 border-white rounded-full">
+    <motion.div className="bg-neutral-900 w-full md:w-80 fixed h-full p-6 text-white flex flex-col justify-between items-stretch gap-4 md:border-r-2 border-neutral-800">
+      <div className="sidebar-logo flex justify-start items-center gap-4">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="relative h-14 w-14 border-2 border-white rounded-2xl"
+        >
           <Image
             src={session?.user?.image || "/voltec.png"}
             alt="VOLTEC Logo"
             objectFit="contain"
             layout="fill"
-            className="rounded-full"
+            className="rounded-2xl"
           />
+        </motion.div>
+        <div className="name-and-email flex justify-center items-start flex-col">
+          <h1 className="text-xl text-neutral-100 font-medium leading-none">
+            {session?.user?.name}
+          </h1>
+          <p className="text-neutral-500 font-manrope text-xs">
+            {session?.user?.email}
+          </p>
         </div>
       </div>
-      <h1 className="font-bold text-4xl">
-        <Link href="/admin">
-          <a className="hover:underline">{session?.user?.name}</a>
-        </Link>
-      </h1>
-      <div className="flex-menu flex flex-col justify-between items-start h-full">
+      <div className="flex-menu flex flex-col justify-between items-start h-full pt-4">
         <div className="main-menu w-full">
           <div className="home-menu w-full pb-2">
-            <h1 className="font-manrope pb-2 text-xl font-bold text-gray-400 w-full">
+            <h1 className="font-manrope pb-2 text-xl font-bold text-white w-full">
               Dashboard
             </h1>
             <motion.div
@@ -44,7 +48,7 @@ const Sidebar = ({ session }: Props) => {
               transition={{ duration: 0.1 }}
             >
               <Link href="/admin">
-                <a className=" w-full hover:bg-neutral-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                <a className="text-neutral-300 w-full hover:bg-neutral-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -65,7 +69,7 @@ const Sidebar = ({ session }: Props) => {
             </motion.div>
           </div>
           <div className="actions-menu w-full">
-            <h1 className="font-manrope pb-2 text-xl font-bold text-gray-400 w-full">
+            <h1 className="font-manrope pb-2 text-xl font-bold text-white w-full">
               User actions
             </h1>
             <div className="list-none gap-2 flex flex-col">
@@ -74,7 +78,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/settings">
-                  <a className=" w-full hover:bg-neutral-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700 p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -103,7 +107,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/public-profile">
-                  <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -132,7 +136,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/appearance">
-                  <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -154,7 +158,7 @@ const Sidebar = ({ session }: Props) => {
             </div>
           </div>
           <div className="actions-menu w-full">
-            <h1 className="font-manrope py-2 text-xl font-bold text-gray-400">
+            <h1 className="font-manrope py-2 text-xl font-bold text-white">
               Site management
             </h1>
             <div className="list-none gap-2 flex flex-col w-full">
@@ -163,7 +167,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/blog">
-                  <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -187,7 +191,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/users">
-                  <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -211,7 +215,7 @@ const Sidebar = ({ session }: Props) => {
                 transition={{ duration: 0.1 }}
               >
                 <Link href="/admin/newspaper">
-                  <a className=" w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -239,14 +243,13 @@ const Sidebar = ({ session }: Props) => {
               onClick={() => {
                 signOut();
               }}
-              whileHover={{
-                boxShadow: "0px 0px 10px #361323",
-              }}
-              className="w-full bg-pink-700 hover:bg-pink-900 p-3 px-3 rounded-lg flex justify-start items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.1 }}
+              className="w-full bg-accent-blue p-3 px-3 rounded-lg flex justify-start items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -260,6 +263,30 @@ const Sidebar = ({ session }: Props) => {
               </svg>
               <span>Log out</span>
             </motion.button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.1 }}
+            >
+              <Link href="/admin/feedback">
+                <a className="text-neutral-300 w-full hover:bg-neutral-700  p-3 px-3 rounded-lg flex justify-start items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
+                  <span>Send feedback</span>
+                </a>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

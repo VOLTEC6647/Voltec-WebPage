@@ -16,21 +16,20 @@ type Props = {
 const AdminLayout = ({ children, title, image }: Props) => {
   const router = useRouter();
   const url = router.pathname.split("/");
-  console.log(router.pathname);
 
   const { data: session, status } = useSession();
   return (
     <AnimateSharedLayout>
-      <div className="h-screen flex flex-col md:flex-row w-full bg-neutral-900">
+      <div className="h-screen flex flex-col md:flex-row w-full bg-primary-blue">
         <Sidebar session={session} />
-        <div className="content bg-dark text-black ml-80 w-full">
-          <div className="top-bar flex justify-between items-center p-3 bg-neutral-800 text-white">
-            <div className="heading flex justify-start items-center text-gray-400">
+        <div className="content bg-white text-black ml-80 w-full">
+          <div className="top-bar flex justify-between items-center p-3 bg-neutral-820 text-white">
+            <div className="heading flex justify-start items-center text-gray-500">
               {router.pathname != "/admin" && (
                 <>
                   <div
                     onClick={() => router.back()}
-                    className="back hover:bg-neutral-700 rounded-lg mr-2"
+                    className="back hover:bg-neutral-300 rounded-lg mr-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,8 @@ const AdminLayout = ({ children, title, image }: Props) => {
                   <>
                     <Link href={index === 1 ? "/" + i : "/admin/" + i}>
                       <a className="hover:underline" key={i}>
-                        {i.charAt(0).toUpperCase() + i.substring(1)}
+                        {i.charAt(0).toUpperCase() +
+                          i.substring(1).replace(/-/, " ")}
                       </a>
                     </Link>
                     {index == arr.length ? null : (
@@ -68,12 +68,12 @@ const AdminLayout = ({ children, title, image }: Props) => {
             <div className="search flex justify-center items-center shadow-sm">
               <input
                 type="text"
-                className="bg-neutral-700 text-gray-300 autofill:bg-neutral-700 outline-none px-3 w-72 py-2 rounded-l-lg"
+                className="bg-neutral-300 text-gray-900 autofill:bg-neutral-700 outline-none px-3 w-72 py-2 rounded-l-lg"
                 name="search"
                 id="search"
                 placeholder="Search..."
               />
-              <button className="h-full p-3 bg-pink-600 rounded-r-lg">
+              <button className="h-full p-3 bg-accent-blue rounded-r-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-white"
@@ -91,16 +91,18 @@ const AdminLayout = ({ children, title, image }: Props) => {
               </button>
             </div>
           </div>
-          {image && (
-            <div className="relative h-48 opacity-60">
-              <Image
-                src={image}
-                layout="fill"
-                alt="Cover Image"
-                objectFit="cover"
-              />
-            </div>
-          )}
+          <div className="image-container bg-neutral-500">
+            {image && (
+              <div className="relative h-64 opacity-60">
+                <Image
+                  src={image}
+                  layout="fill"
+                  alt="Cover Image"
+                  objectFit="cover"
+                />
+              </div>
+            )}
+          </div>
           <AnimatePresence>
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}

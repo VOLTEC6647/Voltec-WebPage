@@ -19,7 +19,7 @@ const Users: NextPage<Props> = ({ admins }) => {
       <div className="heading pb-5">
         <motion.h1
           layoutId="settings-title"
-          className="text-6xl text-white font-bold"
+          className="text-6xl text-neutral-900 font-bold font-manrope"
         >
           Manage Administrators
         </motion.h1>
@@ -29,12 +29,12 @@ const Users: NextPage<Props> = ({ admins }) => {
           admins.map((admin: User) => {
             return (
               <motion.div
-                className="user bg-neutral-800 rounded-xl p-3 md:p-4"
+                className="user bg-background-blue border-l-8 border-accent-blue rounded-xl p-3 md:p-5"
                 key={admin._id.toString()}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex justify-start items-center gap-5">
-                    <div className="relative h-20 w-20 md:w-28 md:h-28 border-white border-4 rounded-full">
+                    <div className="relative h-16 w-16 md:w-24 md:h-24 border-white border-4 rounded-full">
                       <Image
                         src={`https://avatars.dicebear.com/api/micah/${admin.first_name}.svg`}
                         layout="fill"

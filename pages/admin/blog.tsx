@@ -9,7 +9,7 @@ import AdminLayout from "../../components/AdminLayout";
 const blog = () => {
   return (
     <AdminLayout title="Blog">
-      <h1 className="text-5xl text-white font-manrope font-bold">Manage Blog</h1>
+      <h1 className="text-5xl text-neutral-900 font-manrope font-bold">Manage Blog</h1>
     </AdminLayout>
   );
 };

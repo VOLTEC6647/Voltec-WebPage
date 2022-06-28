@@ -22,7 +22,7 @@ const Index: NextPage = () => {
     <AdminLayout title="Administrator Dashboard" image="/flowers.jpeg">
       <div className="w-full">
         <div className="heading pb-5">
-          <h1 className="text-6xl text-white font-bold">Dashboard</h1>
+          <h1 className="text-6xl text-neutral-900 font-manrope font-bold">Dashboard</h1>
         </div>
         <motion.div
           initial={{ scale: 0.85 }}
@@ -31,7 +31,7 @@ const Index: NextPage = () => {
         >
           <motion.div
             whileHover={{ scale: 1.03, rotate: -2 }}
-            className="option bg-neutral-800 p-4 text-white rounded-lg"
+            className="option bg-background-blue p-4 text-white rounded-lg border-accent-blue border-l-8"
           >
             <Link href="/admin/settings">
               <a>
@@ -44,7 +44,7 @@ const Index: NextPage = () => {
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.03, rotate: -2 }}
-            className="option bg-neutral-800 p-4 text-white rounded-lg"
+            className="option bg-background-blue p-4 text-white rounded-lg border-accent-blue border-l-8"
           >
             <Link href="/admin/public-profile">
               <a>
@@ -72,7 +72,7 @@ const Index: NextPage = () => {
           <Link href="/admin/blog">
             <motion.a
               whileHover={{ scale: 1.03, rotate: -2 }}
-              className="option bg-neutral-800 p-4 text-white rounded-lg"
+              className="option bg-background-blue p-4 text-white rounded-lg border-accent-blue border-l-8"
             >
               <h2 className="text-2xl font-manrope font-bold">Blog Posts 💬</h2>
               <p className="text-gray-300 font-manrope">
@@ -82,7 +82,7 @@ const Index: NextPage = () => {
           </Link>
           <motion.div
             whileHover={{ scale: 1.03, rotate: -2 }}
-            className="option bg-neutral-800 p-4 text-white rounded-lg"
+            className="option bg-background-blue p-4 text-white rounded-lg border-accent-blue border-l-8"
           >
             <Link href="/admin/users">
               <a>
@@ -98,7 +98,7 @@ const Index: NextPage = () => {
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.03, rotate: -2 }}
-            className="option bg-neutral-800 p-4 text-white rounded-lg"
+            className="option bg-background-blue p-4 text-white rounded-lg border-accent-blue border-l-8"
           >
             <Link href="/admin/newspaper">
               <a>
