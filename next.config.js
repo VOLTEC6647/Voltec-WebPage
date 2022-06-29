@@ -6,7 +6,9 @@ const nextConfig = {
       "res.cloudinary.com",
       "avatars.dicebear.com",
       "lh3.googleusercontent.com",
-      "cdn.medina.dev"
+      "cdn.medina.dev",
+      "www.clarin.com",
+      "lastfm.freetls.fastly.net",
     ],
   },
   optimizeFonts: false,

@@ -8,4 +8,5 @@ export default interface User {
   pronouns: string;
   role: string;
   locked?: boolean;
+  image?: string;
 }

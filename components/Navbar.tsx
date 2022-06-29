@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [mobileNavShowing, setMobileNavShowing] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="navigation p-4 md:py-6 md:px-8 w-full text-lg z-50 flex justify-between items-center">
-      <div className="hamburger-icon text-white justify-start items-center gap-6 font-space-grotesk font-bold">
+      <motion.div className="hover:text-accent-blue transition-all duration-100 hover:rounded-full hamburger-icon text-white justify-start items-center gap-6 font-space-grotesk font-bold">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10"
@@ -27,7 +28,7 @@ const Navbar = () => {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-      </div>
+      </motion.div>
       <h1 className="font-space-grotesk font-medium text-white">
         VOLTEC Robotics 6647
       </h1>

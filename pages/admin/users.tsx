@@ -7,6 +7,7 @@ import User from "../../lib/types/User";
 import Footer from "../../components/Footer";
 import AdminLayout from "../../components/AdminLayout";
 import { motion } from "framer-motion";
+import { allowedNodeEnvironmentFlags } from "process";
 
 type Props = {
   admins: User[];
@@ -36,7 +37,11 @@ const Users: NextPage<Props> = ({ admins }) => {
                   <div className="flex justify-start items-center gap-5">
                     <div className="relative h-16 w-16 md:w-24 md:h-24 border-white border-4 rounded-full">
                       <Image
-                        src={`https://avatars.dicebear.com/api/micah/${admin.first_name}.svg`}
+                        src={
+                          admin.image
+                            ? admin.image
+                            : `https://avatars.dicebear.com/api/micah/${admin.first_name}.svg`
+                        }
                         layout="fill"
                         objectFit="cover"
                         className="border-4 rounded-full border-white user-pic-bg"
