@@ -1,11 +1,27 @@
-import React from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import AdminLayout from "../../components/AdminLayout";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { NextPageContext } from "next";
 
 const Settings = () => {
   const { data: session, status } = useSession();
+
+  const [name, setName] = useState(session?.user?.name || "");
+
+  const handleNameChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setName(e.target.value);
+  };
+
+  const saveName = async () => {
+    const sendRequest = await fetch("/api/save-user", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+      }),
+    });
+  };
 
   return (
     <AdminLayout title="Settings" image="/flowers.jpeg">
@@ -25,19 +41,27 @@ const Settings = () => {
           <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
             <div className="name font-manrope bg-background-blue border-l-8 border-accent-blue p-5 rounded-lg flex flex-col gap-2">
               <h2 className="text-xl text-neutral-300 font-medium">Name</h2>
-              <input
-                type="text"
-                value={session?.user?.name || ""}
-                className="bg-gray-700 text-gray-300 autofill:bg-neutral-700 outline-none px-3 py-2 rounded-lg w-full"
-              />
+              <div className="input justify-center items-center flex">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                  className="bg-gray-700 text-gray-300 autofill:bg-neutral-700 outline-none px-3 py-2 rounded-l-lg w-full"
+                />
+                <button className="rounded-r-lg py-2 px-3 text-white bg-accent-blue">
+                  Save
+                </button>
+              </div>
             </div>
             <div className="email font-manrope bg-background-blue border-l-8 border-accent-blue p-5 rounded-lg flex flex-col gap-2">
               <h2 className="text-xl text-neutral-300 font-medium">Email</h2>
-              <input
-                type="text"
-                value={session?.user?.email || ""}
-                className="bg-gray-700 text-gray-300 autofill:bg-neutral-700 outline-none px-3 py-2 rounded-lg w-full"
-              />
+              <div className="input justify-center items-center flex">
+                <input
+                  type="text"
+                  value={session?.user?.email || ""}
+                  className="bg-gray-700 text-gray-300 autofill:bg-neutral-700 outline-none px-3 py-2 rounded-l-lg w-full cursor-not-allowed"
+                />
+              </div>
             </div>
           </div>
           <div className="buttons font-manrope bg-background-blue border-l-8 border-accent-blue p-5 rounded-lg flex flex-col gap-2">
@@ -61,3 +85,22 @@ const Settings = () => {
 };
 
 export default Settings;
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      props: {
+        session: session,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+}
