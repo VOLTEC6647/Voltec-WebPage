@@ -38,16 +38,16 @@ const Blog = ({ posts, error }: Props) => {
             ))
           ) : (
             <div className="h-[50vh] flex justify-center items-center">
-              <p className="text-white text-center text-5xl tracking-tighter font-manrope font-bold">
-                {error ? (
-                  <p>
-                    Hubo un <span className="text-red-400">error</span> al
-                    cargar las publicaciones
-                  </p>
-                ) : (
-                  "No posts yet"
-                )}
-              </p>
+              {error ? (
+                <p className="text-white text-center text-5xl tracking-tighter font-manrope font-bold">
+                  Hubo un <span className="text-red-400">error</span> al cargar
+                  las publicaciones
+                </p>
+              ) : (
+                <p className="text-white text-center text-5xl tracking-tighter font-manrope font-bold">
+                  No posts yet
+                </p>
+              )}
             </div>
           )}
         </div>
