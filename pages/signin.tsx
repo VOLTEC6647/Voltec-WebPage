@@ -21,10 +21,13 @@ const signin = () => {
           />
         </div>
       </div>
-      <div className="bg-background-blue pb-10">
+      <div className="bg-background-blue pb-10 p-4">
         <div className="max-w-6xl mx-auto bg-background-blue">
           <div className="info filter z-10">
             <div className="heading text-white py-12 h-full flex flex-col justify-center items-start">
+              <div className="banner bg-red-400 text-white p-4 w-full mb-8 rounded-lg">
+                <p>This section of the website is not functional yet. Do not input any information.</p>
+              </div>
               <h1 className="title text-white">Iniciar Sesión 🔧</h1>
               <p className="font-manrope text-sm md:text-lg">
                 🔑 Esta sección es solo para miembros de VOLTEC.
