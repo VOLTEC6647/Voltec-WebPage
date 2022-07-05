@@ -9,6 +9,8 @@ const nextConfig = {
       "cdn.medina.dev",
       "www.clarin.com",
       "lastfm.freetls.fastly.net",
+      "source.unsplash.com",
+      "images.unsplash.com"
     ],
   },
   optimizeFonts: false,

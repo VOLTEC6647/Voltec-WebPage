@@ -14,7 +14,7 @@ module.exports = {
         "background-blue-darker": "#0b1114",
         dark: "#141414",
         "hero-blue": "#0F1520",
-        "accent-blue": "#588AB8",
+        "accent-blue": "#4DAAE8",
       },
       fontFamily: {
         "space-grotesk": ["Space Grotesk", "sans-serif"],
