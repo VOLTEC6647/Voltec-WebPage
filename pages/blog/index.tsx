@@ -78,7 +78,10 @@ export async function getServerSideProps(context: NextPageContext) {
     const client = await clientPromise;
     const db = client.db("Blog");
 
-    const posts = await db.collection("Posts").find({}).toArray();
+    const posts = await db
+      .collection("Posts")
+      .find({ private: false })
+      .toArray();
 
     return {
       props: {

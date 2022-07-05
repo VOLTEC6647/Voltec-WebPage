@@ -101,6 +101,11 @@ const Navbar = () => {
                     Patrocinadores
                   </a>
                 </Link>
+                <Link href="/contacto">
+                  <a className="text-white text-4xl md:text-6xl lg:text-9xl font-bold hover:text-accent-blue hover:underline">
+                    Contacto
+                  </a>
+                </Link>
                 <SocialIcons />
               </div>
             </div>

@@ -49,7 +49,6 @@ const AdminLayout = ({ children, title, image }: Props) => {
                 </>
               )}
               {url.map((i, index, arr) => {
-                console.log(i, index, arr);
                 return (
                   <>
                     <Link href={index === 1 ? "/" + i : "/admin/" + i}>
