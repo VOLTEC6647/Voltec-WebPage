@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { getSession } from "next-auth/react";
 import { NextPageContext } from "next";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 const sizeOf = function (bytes: number) {
   if (bytes == 0) {
@@ -57,6 +58,9 @@ const Newspaper = () => {
       title="Newspaper"
       image="https://images.unsplash.com/photo-1591647273840-8826c6cfab8b"
     >
+      <Head>
+        <title>Manage Newspaper | VOLTEC Robotics 6647</title>
+      </Head>
       <div className="heading">
         <h1 className="text-5xl text-neutral-900 font-manrope font-bold">
           Upload Newspaper

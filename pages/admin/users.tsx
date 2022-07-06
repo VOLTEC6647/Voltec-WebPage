@@ -7,7 +7,7 @@ import User from "../../lib/types/User";
 import Footer from "../../components/Footer";
 import AdminLayout from "../../components/AdminLayout";
 import { motion } from "framer-motion";
-import { allowedNodeEnvironmentFlags } from "process";
+import Head from 'next/head'
 
 type Props = {
   admins: User[];
@@ -17,6 +17,9 @@ const Users: NextPage<Props> = ({ admins }) => {
   console.log(admins);
   return (
     <AdminLayout title="Manage Administrators" image="/flowers.jpeg">
+      <Head>
+        <title>Manage Administrators | VOLTEC Robotics 6647</title>
+      </Head>
       <div className="heading pb-5">
         <motion.h1
           layoutId="settings-title"

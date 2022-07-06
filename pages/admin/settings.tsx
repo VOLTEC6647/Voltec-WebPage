@@ -4,6 +4,7 @@ import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { NextPageContext } from "next";
+import Head from "next/head";
 
 const Settings = () => {
   const { data: session, status } = useSession();
@@ -25,6 +26,9 @@ const Settings = () => {
 
   return (
     <AdminLayout title="Settings" image="/flowers.jpeg">
+      <Head>
+        <title>Settings | VOLTEC Robotics 6647</title>
+      </Head>
       <div className="heading pb-5">
         <motion.h1
           layoutId="settings-title"

@@ -5,6 +5,7 @@ import { getSession } from "next-auth/react";
 import { NextPage, NextPageContext } from "next";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 const container = {
   hidden: { scale: 0.85 },
@@ -20,6 +21,9 @@ const Index: NextPage = () => {
   const { data: session, status } = useSession();
   return (
     <AdminLayout title="Administrator Dashboard" image="/flowers.jpeg">
+      <Head>
+        <title>Administrator Dashboard | VOLTEC Robotics 6647</title>
+      </Head>
       <div className="w-full">
         <div className="heading pb-5">
           <h1 className="text-6xl text-neutral-900 font-manrope font-bold">Dashboard</h1>
