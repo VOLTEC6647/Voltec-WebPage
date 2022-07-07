@@ -3,8 +3,8 @@ import { MongoClient } from "mongodb";
 const uri = process.env.MONGODB;
 const options = {};
 
-let client;
-let clientPromise: any;
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
 
 if (!process.env.MONGODB) {
   throw new Error("Please add your Mongo URI to .env.local");
@@ -35,4 +35,4 @@ if (process.env.NODE_ENV === "development") {
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can b    e shared across functions.
-export default clientPromise;
+export default clientPromise!;

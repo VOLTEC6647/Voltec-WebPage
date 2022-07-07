@@ -115,7 +115,7 @@ export async function getServerSideProps(context: NextPageContext) {
     const client = await clientPromise;
     const db = client.db("Users");
 
-    const admins = await db.collection("Admins").find({}).limit(3).toArray();
+    const admins = await db.collection("Admins").find({}).toArray();
     console.log("index.tsx " + JSON.parse(JSON.stringify(admins)));
 
     return {

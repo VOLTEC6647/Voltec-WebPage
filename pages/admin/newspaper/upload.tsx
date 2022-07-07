@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, useCallback, useState } from "react";
-import AdminLayout from "../../components/AdminLayout";
+import AdminLayout from "../../../components/AdminLayout";
 import { useDropzone } from "react-dropzone";
 import { getSession } from "next-auth/react";
 import { NextPageContext } from "next";

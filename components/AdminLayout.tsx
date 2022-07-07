@@ -51,12 +51,19 @@ const AdminLayout = ({ children, title, image }: Props) => {
               {url.map((i, index, arr) => {
                 return (
                   <>
-                    <Link href={index === 1 ? "/" + i : "/admin/" + i}>
+                    {/* <Link href={index === 1 ? "/" + i : "/admin/" + i}>
                       <a className="hover:underline" key={i}>
                         {i.charAt(0).toUpperCase() +
                           i.substring(1).replace(/-/, " ")}
                       </a>
                     </Link>
+                    {index == arr.length ? null : (
+                      <span className="px-2">/</span>
+                    )} */}
+                    <p key={i}>
+                      {i.charAt(0).toUpperCase() +
+                        i.substring(1).replace(/-/, " ")}
+                    </p>
                     {index == arr.length ? null : (
                       <span className="px-2">/</span>
                     )}
