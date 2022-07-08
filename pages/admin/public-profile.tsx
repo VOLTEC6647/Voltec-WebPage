@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import AdminLayout from "../../components/AdminLayout";
+import { getSession } from "next-auth/react";
 
 const Profile = () => {
   return (
@@ -21,3 +22,16 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+};

@@ -7,7 +7,8 @@ import User from "../../lib/types/User";
 import Footer from "../../components/Footer";
 import AdminLayout from "../../components/AdminLayout";
 import { motion } from "framer-motion";
-import Head from 'next/head'
+import Head from "next/head";
+import { getSession } from "next-auth/react";
 
 type Props = {
   admins: User[];
@@ -111,6 +112,17 @@ const Users: NextPage<Props> = ({ admins }) => {
 export default Users;
 
 export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+
   try {
     const client = await clientPromise;
     const db = client.db("Users");

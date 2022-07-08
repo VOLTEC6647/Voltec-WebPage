@@ -7,6 +7,7 @@ import Link from "next/link";
 import AdminLayout from "../../components/AdminLayout";
 import BlogPost from "../../lib/types/BlogPost";
 import { motion } from "framer-motion";
+import { getSession } from "next-auth/react";
 
 type Props = {
   posts: BlogPost[];
@@ -41,9 +42,14 @@ const blog: NextPage<Props> = ({ posts }) => {
                     />
                   </div>
                   <div className="texts">
-                      <a href={`/blog/${post._id}`} target="_blank" rel="noreferrer" className="text-xl md:text-3xl text-white font-manrope font-bold hover:underline">
-                        {post.title}
-                      </a>
+                    <a
+                      href={`/blog/${post._id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xl md:text-3xl text-white font-manrope font-bold hover:underline"
+                    >
+                      {post.title}
+                    </a>
                     <p className="text-neutral-400">
                       {post.content.substring(0, 100)}...
                     </p>
@@ -84,6 +90,17 @@ const blog: NextPage<Props> = ({ posts }) => {
 export default blog;
 
 export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+
   try {
     const client = await clientPromise;
     const db = client.db("Blog");
