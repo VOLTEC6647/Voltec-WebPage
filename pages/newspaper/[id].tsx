@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import clientPromise from "../../lib/mongodb";
 import { NextPage, NextPageContext } from "next";
 import Issue from "../../lib/types/NewspaperIssue";
 import { ObjectId } from "mongodb";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
+import { Document, Page, pdfjs } from "react-pdf";
 
 type Props = {
   issue: Issue;
 };
 
 const Newspaper: NextPage<Props> = ({ issue }) => {
-  console.log(issue);
+  pdfjs.GlobalWorkerOptions.workerSrc =
+    "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js";
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }: any) {
+    setNumPages(numPages);
+  }
 
   if (issue.visibility === false) {
     return (
@@ -77,8 +85,8 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
             </svg>
           </button>
         </div>
-        <div className="pdf">
-          <iframe src={issue.fileUrl} className="w-full h-screen" />
+        <div className="pdf h-screen w-full">
+          <embed src={`https://drive.google.com/viewerng/viewer?embedded=true&url=` + issue.fileUrl} type="application/pdf" className="w-full h-full" />
         </div>
       </div>
     </div>
