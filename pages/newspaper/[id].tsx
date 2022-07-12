@@ -16,7 +16,6 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
     "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js";
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [error, setError] = useState('error: ')
 
   function onDocumentLoadSuccess({ numPages }: any) {
     setNumPages(numPages);
@@ -86,7 +85,6 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
             </svg>
           </button>
         </div>
-        <p>{error}</p>
         <div className="pdf h-screen w-full">
           <embed
           
