@@ -59,9 +59,11 @@ const Users: NextPage<Props> = ({ admins }) => {
                       </h2>
                       <h1 className="text-xl md:text-3xl text-white font-manrope font-bold">
                         {admin.first_name} {admin.last_name}{" "}
-                        <span className="text-base md:text-base text-neutral-400">
-                          ({admin.pronouns})
-                        </span>
+                        {admin.pronouns && (
+                          <span className="text-base md:text-base text-neutral-400">
+                            ({admin.pronouns})
+                          </span>
+                        )}
                       </h1>
                       <h2 className="text-pink-600 text-sm md:text-base font-medium">
                         <a href={`mailto:${admin.email}`}>{admin.email}</a>
