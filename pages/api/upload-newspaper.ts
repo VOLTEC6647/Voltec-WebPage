@@ -7,14 +7,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await unstable_getServerSession(req, res, authOptions);
 
-  // if (!session) {
-  //   res.status(403).send({
-  //     error: "You must be signed in to upload a newspaper. 🖕",
-  //   });
-  //   return;
-  // }
+  if (!session) {
+    res.status(403).send({
+      error: "You must be signed in to upload a newspaper. 🖕",
+    });
+    return;
+  }
 
   // const client = await clientPromise;
   // const db = await client.db("Newspapers");
