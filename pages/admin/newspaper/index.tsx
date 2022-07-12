@@ -51,7 +51,7 @@ const index: NextPage<Props> = ({ issues }) => {
             Published issues
           </h1>
         </div>
-        <div className="issues pt-2">
+        <div className="issues pt-2 grid grid-cols-1 gap-4">
           {issues.map((i: Issue) => {
             return (
               <div

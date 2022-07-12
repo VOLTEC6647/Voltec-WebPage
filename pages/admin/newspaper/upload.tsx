@@ -5,6 +5,8 @@ import { getSession } from "next-auth/react";
 import { NextPageContext } from "next";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import axios from "axios";
+import Issue from "../../../lib/types/NewspaperIssue";
 
 const sizeOf = function (bytes: number) {
   if (bytes == 0) {
@@ -17,13 +19,14 @@ const sizeOf = function (bytes: number) {
 };
 
 const Newspaper = () => {
-  const [files, setFiles]: Array<any> = useState([]);
+  const [file, setFile] = useState<Array<File>>([]);
   const [title, setTitle] = useState(
     `VOLTEC Weekly | ${new Date().toLocaleDateString()}`
   );
   const [description, setDescription] = useState(
     "In this week's edition of VOLTEC Weekly, we discuss the latest news and events regarding..."
   );
+  const [status, setStatus] = useState("Publish");
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const filesArray = acceptedFiles.map((file) =>
@@ -32,17 +35,13 @@ const Newspaper = () => {
       })
     );
     console.log(filesArray);
-    setFiles(filesArray);
+    setFile(filesArray);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const deleteFile: any = (event: any, name: string) => {
     event.preventDefault();
-    setFiles(
-      files.filter(function (i: File) {
-        return i.name !== name;
-      })
-    );
+    setFile([]);
   };
 
   const handleTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -51,6 +50,51 @@ const Newspaper = () => {
 
   const handleDescriptionChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setDescription(e.target.value);
+  };
+
+  const publishNewspaper = async () => {
+    setStatus("Uploading...");
+    const uniqueKey = `${new Date().getTime()}-${Math.floor(
+      Math.random() * 100
+    )}`;
+    let { data } = await axios.post("/api/upload-s3", {
+      name: `${file[0].name}-${uniqueKey}`,
+      type: file[0].type,
+    });
+
+    const url = data.url;
+    console.log(data);
+
+    try {
+      const upload = await axios.put(url, file[0], {
+        headers: {
+          "Content-Type": file[0].type,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      console.log(
+        "https://voltec.s3.amazonaws.com/" + `${file[0].name}-${uniqueKey}`
+      );
+
+      const newspaperIssue = {
+        title,
+        date: new Date(),
+        description,
+        fileUrl:
+          "https://voltec.s3.amazonaws.com/" + `${file[0].name}-${uniqueKey}`,
+      };
+
+      const uploadNewspaper = await axios.put(
+        "/api/upload-newspaper",
+        newspaperIssue
+      );
+      console.log(uploadNewspaper);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setFile([]);
+    setStatus("Publish");
   };
 
   return (
@@ -65,14 +109,14 @@ const Newspaper = () => {
         <h1 className="text-5xl text-neutral-900 font-manrope font-bold">
           Upload Newspaper
         </h1>
-        {files.length == 0 ? (
+        {file.length == 0 ? (
           <p className="font-manrope text-neutral-400 font-bold text-lg pt-1">
             Select a file to begin.
           </p>
         ) : null}
       </div>
       <div className="content grid grid-cols-1 pt-8 h-full gap-4">
-        {files.length == 0 ? (
+        {file.length == 0 ? (
           <div className="uploader-section font-manrope h-[52vh]">
             <div
               {...getRootProps()}
@@ -82,6 +126,7 @@ const Newspaper = () => {
                 {...getInputProps()}
                 className="w-full h-full text-neutral-400"
                 accept="application/pdf"
+                multiple={false}
               />
               {isDragActive ? (
                 <div className="dropzone text-neutral-700">
@@ -165,7 +210,7 @@ const Newspaper = () => {
               <p className="font-space-grotesk text-neutral-500 text-lg">
                 Files
               </p>
-              {files.map((i: File) => {
+              {file.map((i: File) => {
                 return (
                   <div className="file w-full" key={i.name}>
                     <div className="file-display flex gap-2 justify-between items-center text-neutral-600 font-manrope font-bold bg-neutral-200 p-4 rounded-lg w-full">
@@ -225,8 +270,11 @@ const Newspaper = () => {
               })}
             </div>
             <div className="publish-button text-black pt-2">
-              <button className="bg-accent-blue text-white px-14 rounded-lg w-full hover:shadow-lg transition-all duration-150 py-3">
-                Publish
+              <button
+                onClick={publishNewspaper}
+                className="bg-accent-blue text-white px-14 rounded-lg w-full hover:shadow-lg transition-all duration-150 py-3"
+              >
+                {status}
               </button>
             </div>
           </motion.div>
