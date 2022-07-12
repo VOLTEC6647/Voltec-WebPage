@@ -75,7 +75,7 @@ const index: NextPage<Props> = ({ issues }) => {
                   </svg>
                   <div className="issue-information flex flex-col justify-start items-start">
                     <a
-                      href={`/newspaper/${i._id}`}
+                      href={`/weekly/${i._id}`}
                       rel="noopener noreferrer"
                       target={"_blank"}
                       className="font-manrope font-bold text-2xl"

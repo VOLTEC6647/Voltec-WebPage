@@ -10,7 +10,8 @@ const nextConfig = {
       "www.clarin.com",
       "lastfm.freetls.fastly.net",
       "source.unsplash.com",
-      "images.unsplash.com"
+      "images.unsplash.com",
+      "voltec.s3.amazonaws.com"
     ],
   },
   optimizeFonts: false,

@@ -86,7 +86,7 @@ const Navbar = () => {
                     Blog
                   </a>
                 </Link>
-                <Link href="/periódico">
+                <Link href="/weekly">
                   <a className="text-white text-4xl md:text-6xl lg:text-9xl font-bold hover:text-accent-blue hover:underline">
                     Periódico
                   </a>
