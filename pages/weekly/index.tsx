@@ -85,7 +85,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
     const issue = await db
       .collection("issues")
-      .find({ visibility: false })
+      .find({ visibility: true })
       .toArray();
 
     return {
