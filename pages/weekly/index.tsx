@@ -55,7 +55,9 @@ const index: NextPage<Props> = ({ issues }) => {
               </div>
               <div className="text">
                 <div className="issue-title">
-                  <span className="block">{new Date(issue.date).toLocaleDateString()}</span>
+                  <span className="block">
+                    {new Date(issue.date).toLocaleDateString()}
+                  </span>
                   <Link href={`/weekly/${issue._id.toString()}`}>
                     <a className="text-4xl hover:underline font-bold font-manrope text-black tracking-tighter">
                       {issue.title}
@@ -81,7 +83,10 @@ export async function getServerSideProps(context: NextPageContext) {
     const client = await clientPromise;
     const db = client.db("Newspapers");
 
-    const issue = await db.collection("issues").find({}).toArray();
+    const issue = await db
+      .collection("issues")
+      .find({ visibility: false })
+      .toArray();
 
     return {
       props: {
