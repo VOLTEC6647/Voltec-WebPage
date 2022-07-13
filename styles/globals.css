@@ -15,6 +15,14 @@
   background: linear-gradient(90deg, #fdbb2d 0%, #22c1c3 100%);
 }
 
+.badge-public {
+  background: linear-gradient(270deg, #3277d2 0%, #db76a5 100%);
+}
+
+.badge-private {
+  background: linear-gradient(270deg, #d23232 0%, #db76d7 100%);
+}
+
 .badge-season {
   background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }

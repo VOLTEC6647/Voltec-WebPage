@@ -6,6 +6,7 @@ import { ObjectId } from "mongodb";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "../../components/Footer";
 
 type Props = {
   issue: Issue;
@@ -33,7 +34,7 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
         <Navbar />
       </div>
       <div className="">
-        <div className="cover-image h-56 w-full relative">
+        <div className="cover-image h-48 w-full relative">
           <Image
             src="/voltec-weekly.jpeg"
             objectFit="cover"
@@ -42,7 +43,7 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
           />
         </div>
       </div>
-      <div className="content max-w-4xl mx-auto h-full px-4">
+      <div className="content max-w-4xl mx-auto h-full px-4 pb-16">
         <div className="information pt-8">
           <span className="text-neutral-500">
             {new Date(issue.date).toLocaleDateString()}
@@ -99,6 +100,7 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
           />
         </div>
       </div>
+      <Footer />
       <Toaster />
     </div>
   );

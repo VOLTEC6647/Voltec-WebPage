@@ -6,6 +6,7 @@ import Link from "next/link";
 import clientPromise from "../../../lib/mongodb";
 import { NextPage, NextPageContext } from "next";
 import Issue from "../../../lib/types/NewspaperIssue";
+import Badge from "../../../components/Badge";
 
 type Props = {
   issues: Issue[];
@@ -78,9 +79,10 @@ const index: NextPage<Props> = ({ issues }) => {
                       href={`/weekly/${i._id}`}
                       rel="noopener noreferrer"
                       target={"_blank"}
-                      className="font-manrope font-bold text-2xl"
+                      className="font-manrope hover:underline font-bold text-2xl flex justify-start items-center gap-4"
                     >
-                      {i.title}
+                      {i.title}{" "}
+                      <Badge type={i.visibility ? "private" : "public"} />
                     </a>
                     <p className="text-neutral-500 text-lg">
                       Published on {new Date(i.date).toLocaleDateString()}
@@ -110,7 +112,7 @@ const index: NextPage<Props> = ({ issues }) => {
                   </div>
                 </div>
                 <div className="issue-actions">
-                  <div className="edit bg-pink-500 py-2 px-4 rounded-lg text-white">
+                  <div className="edit border-2 border-pink-500 text-pink-500 py-2 px-4 rounded-lg text-white">
                     <Link href={`/admin/newspaper/edit/${i._id}`}>
                       <a className="text-lg flex justify-center items-center gap-2">
                         Edit{" "}

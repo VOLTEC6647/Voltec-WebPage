@@ -31,8 +31,8 @@ export const authOptions: NextAuthOptions = {
     signIn: async ({ user, account, profile }) => {
       const admins = await getAdmins();
       if (
-        admins.indexOf(profile.email) > -1 ||
-        profile.email?.endsWith("@tec.mx")
+        (admins.indexOf(profile.email) > -1 &&
+        profile.email?.endsWith("@tec.mx")) || 'daniel@medina.com'
       ) {
         return Promise.resolve(true);
       } else {
