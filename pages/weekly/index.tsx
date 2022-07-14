@@ -46,7 +46,7 @@ const index: NextPage<Props> = ({ issues }) => {
             >
               <div className="image relative w-full md:w-24 h-36 md:h-24 rounded-lg">
                 <Image
-                  src={`https://source.unsplash.com/random/${issue._id}`}
+                  src={`https://source.unsplash.com/random?nature,${issue._id}`}
                   objectFit="cover"
                   layout="fill"
                   className="rounded-lg"

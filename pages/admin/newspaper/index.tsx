@@ -82,7 +82,7 @@ const index: NextPage<Props> = ({ issues }) => {
                       className="font-manrope hover:underline font-bold text-2xl flex justify-start items-center gap-4"
                     >
                       {i.title}{" "}
-                      <Badge type={i.visibility ? "private" : "public"} />
+                      <Badge type={i.visibility ? "public" : "private"} />
                     </a>
                     <p className="text-neutral-500 text-lg">
                       Published on {new Date(i.date).toLocaleDateString()}
@@ -112,10 +112,9 @@ const index: NextPage<Props> = ({ issues }) => {
                   </div>
                 </div>
                 <div className="issue-actions">
-                  <div className="edit border-2 border-pink-500 text-pink-500 py-2 px-4 rounded-lg text-white">
+                  <div className="edit border-2 border-pink-500 text-pink-500 p-2 rounded-lg text-white">
                     <Link href={`/admin/newspaper/edit/${i._id}`}>
                       <a className="text-lg flex justify-center items-center gap-2">
-                        Edit{" "}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6"

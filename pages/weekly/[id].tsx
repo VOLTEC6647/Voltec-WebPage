@@ -5,7 +5,7 @@ import Issue from "../../lib/types/NewspaperIssue";
 import { ObjectId } from "mongodb";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Footer from "../../components/Footer";
 
 type Props = {
@@ -101,7 +101,6 @@ const Newspaper: NextPage<Props> = ({ issue }) => {
         </div>
       </div>
       <Footer />
-      <Toaster />
     </div>
   );
 };

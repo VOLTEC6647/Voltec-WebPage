@@ -6,7 +6,7 @@ import { NextPageContext } from "next";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import axios from "axios";
-import Issue from "../../../lib/types/NewspaperIssue";
+import toast from "react-hot-toast";
 
 const sizeOf = function (bytes: number) {
   if (bytes == 0) {
@@ -17,6 +17,10 @@ const sizeOf = function (bytes: number) {
     (bytes / Math.pow(1024, e)).toFixed(2) + " " + " KMGTP".charAt(e) + "B"
   );
 };
+
+function delay(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 const Newspaper = () => {
   const [file, setFile] = useState<Array<File>>([]);
@@ -95,6 +99,9 @@ const Newspaper = () => {
 
     setFile([]);
     setStatus("Publish");
+    toast.success("Newspaper uploaded successfully!");
+    await delay(1000);
+    window.location.href = "/admin/newspaper";
   };
 
   return (

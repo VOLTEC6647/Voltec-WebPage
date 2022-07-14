@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Contacto: NextPage = () => {
   const [email, setEmail] = useState("");
@@ -261,7 +261,6 @@ const Contacto: NextPage = () => {
         </div>
       </div>
       <Footer />
-      <Toaster />
     </div>
   );
 };

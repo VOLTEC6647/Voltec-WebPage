@@ -13,7 +13,48 @@ type Props = {
 };
 
 const Edit: NextPage<Props> = ({ issue }) => {
-  console.log(issue);
+  const [visibility, setVisibility] = useState<boolean | undefined>(
+    issue.visibility
+  );
+
+  const deleteIssue = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this issue?"
+    );
+    if (confirmed) {
+      const request = await fetch("/api/delete-issue", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: issue._id,
+        }),
+      });
+
+      const data = await request.json();
+      console.log(data);
+
+      if (request.ok) {
+        window.location.href = "/admin/newspaper";
+      }
+    }
+  };
+
+  const toggleVisibility = async () => {
+    const request = await fetch("/api/update-issue", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: issue._id,
+        visibility: issue.visibility,
+      }),
+    });
+    setVisibility(!visibility);
+  };
+
   return (
     <AdminLayout title="edit" image={"/flowers.jpeg"}>
       <Head>
@@ -33,7 +74,7 @@ const Edit: NextPage<Props> = ({ issue }) => {
       <div className="content grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="preview">
           <h1 className="text-4xl font-manrope font-bold text-black pb-2">
-            Preview File
+            File
           </h1>
           <div className="pdf h-[70vh] w-full p-2 border-2">
             <iframe src={issue.fileUrl} className="w-full h-full" />
@@ -44,9 +85,17 @@ const Edit: NextPage<Props> = ({ issue }) => {
             Actions
           </h1>
           <div className="buttons flex justify-start items-center gap-2">
-            <button className="bg-red-500 py-3 px-8 rounded-xl">Delete</button>
-            <button className="bg-accent-blue py-3 px-8 rounded-xl">
-              Unpublish
+            <button
+              className="bg-red-500 py-3 px-8 rounded-xl"
+              onClick={deleteIssue}
+            >
+              Delete
+            </button>
+            <button
+              className="bg-accent-blue py-3 px-8 rounded-xl"
+              onClick={toggleVisibility}
+            >
+              {visibility === true ? "Make Private" : "Make Public"}
             </button>
           </div>
         </div>
