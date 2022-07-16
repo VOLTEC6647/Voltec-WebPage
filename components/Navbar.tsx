@@ -96,9 +96,9 @@ const Navbar = () => {
                     Nuestra Historia
                   </a>
                 </Link>
-                <Link href="/patrocinadores">
+                <Link href="/calendario">
                   <a className="text-white text-4xl md:text-6xl lg:text-9xl font-bold hover:text-accent-blue hover:underline">
-                    Patrocinadores
+                    Calendario
                   </a>
                 </Link>
                 <Link href="/contacto">

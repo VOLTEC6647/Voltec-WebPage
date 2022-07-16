@@ -112,7 +112,7 @@ const index: NextPage<Props> = ({ issues }) => {
                   </div>
                 </div>
                 <div className="issue-actions">
-                  <div className="edit border-2 border-pink-500 text-pink-500 p-2 rounded-lg text-white">
+                  <div className="edit border-2 border-pink-500 text-pink-500 p-2 rounded-lg">
                     <Link href={`/admin/newspaper/edit/${i._id}`}>
                       <a className="text-lg flex justify-center items-center gap-2">
                         <svg
