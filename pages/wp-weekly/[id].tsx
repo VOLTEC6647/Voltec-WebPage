@@ -15,7 +15,9 @@ type Props = {
 };
 
 const Newspaper: NextPage<Props> = () => {
-  const { id } = useRouter().query;
+  const router = useRouter();
+
+  const { id } = router.query;
 
   useEffect(() => {
     if (id === undefined) {
@@ -28,7 +30,7 @@ const Newspaper: NextPage<Props> = () => {
 
   useEffect(() => {
     const getIssues = async () => {
-      const post = await fetchNewspaperIssue(parseInt(id));
+      const post = await fetchNewspaperIssue(parseInt(id as string));
       setIssue(post);
     };
     getIssues();
