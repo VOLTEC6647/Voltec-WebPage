@@ -1,4 +1,4 @@
-const BASE_URL = "http://voltec.local/wp-json/wp/v2";
+const BASE_URL = process.env.NEXT_PUBLIC_WP_URL;
 
 export const fetchNewspaperIssues = async () => {
   const req = await fetch(BASE_URL + "/newspapers?_embed");
