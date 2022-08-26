@@ -1,29 +1,28 @@
 import React from "react";
+import { GetServerSidePropsContext } from "next";
 import BlogPost from "../../lib/types/BlogPost";
-import clientPromise from "../../lib/mongodb";
-import { ObjectId } from "bson";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Badge from "../../components/Badge";
 import Image from "next/image";
-import { GetServerSidePropsContext } from "next";
 
 type Props = {
   post: BlogPost;
   error?: string;
+  tags: [];
 };
 
 const Post = ({ post, error }: Props) => {
-  console.log(post);
-
   return (
     <div className="bg-background-blue h-screen w-screen">
       <Navbar />
       <div className="image h-1/3">
         <div className="image-container relative h-full w-full cursor-pointer">
           <Image
-            src={post._links["wp:featuredmedia"][0].link}
+            src={
+              post._embedded["wp:featuredmedia"]
+                ? post._embedded["wp:featuredmedia"][0].source_url
+                : "/blog-bg.jpeg"
+            }
             alt="AtosBot, the VOLTEC robot"
             layout="fill"
             objectFit="cover"
@@ -31,21 +30,16 @@ const Post = ({ post, error }: Props) => {
         </div>
       </div>
       <div className="p-4 lg:p-14 bg-background-blue">
-        <div className="max-w-6xl mx-auto">
-          {/* <div className="badges flex justify-start items-center gap-4 pb-4">
-            {post.tags.map((i: string) => {
-              return <Badge key={i} type={i} />;
-            })}
-          </div> */}
-          <div className="headings pt-4 lg:pt-0 pb-8">
+        <div className="w-max mx-auto">
+          <div className="headings prose lg:prose-title pt-4 lg:pt-0">
             <span className="date text-base font-mono text-white">
               {new Date(post.date).toLocaleDateString()}
             </span>
             <h1 className="title text-white pb-5">{post.title.rendered}</h1>
-            <hr />
           </div>
+          <hr />
           <div
-            className="post-content text-white font-manrope"
+            className="post-content prose lg:prose-xl text-white font-manrope pt-4"
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />
         </div>
@@ -62,15 +56,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   console.log("ID: " + id);
 
   try {
-    const res = await fetch(
-      `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts/${id}?_embed`
-    );
-
+    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts/${id}?_embed`;
+    const res = await fetch(url);
     const post = await res.json();
+
+    const tagRes = await fetch(
+      `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/tags`
+    );
+    const tags = await tagRes.json();
 
     return {
       props: {
         post,
+        tags,
       },
     };
   } catch (e) {

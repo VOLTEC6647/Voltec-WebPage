@@ -1,8 +1,8 @@
-import { ObjectID } from "bson";
+import TagType from "./TagType";
 
 export default interface BlogPost {
-  tags: any;
-  _id: ObjectID;
+  tags: TagType[];
+  id: number;
   title: {
     rendered: string;
   };
@@ -17,8 +17,11 @@ export default interface BlogPost {
   _embedded: {
     "wp:featuredmedia": [
       {
-        link: string;
+        source_url: string;
       }
     ];
+  };
+  excerpt: {
+    rendered: string;
   };
 }

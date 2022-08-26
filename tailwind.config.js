@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -24,9 +25,9 @@ module.exports = {
         "10xl": "14rem",
       },
       lineHeight: {
-        'squish': '0.8'
-      }
+        squish: "0.8",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

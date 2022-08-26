@@ -23,18 +23,20 @@ const Blog = ({ posts, error }: Props) => {
           <hr />
         </div>
         <div className="posts flex flex-col gap-6">
-          {posts?.length > 0 ? (
+          {posts.length > 0 ? (
             posts.map((post: BlogPost) => (
               <Post
-                id={post._id}
-                likes={post.likes}
-                key={post._id.toString()}
-                title={post.title}
-                badges={post.badges}
-                src={post.image}
-              >
-                {post.content}
-              </Post>
+                id={post.id}
+                key={post.id}
+                title={post.title.rendered}
+                date={new Date(post.date)}
+                image={
+                  post._embedded["wp:featuredmedia"]
+                    ? post._embedded["wp:featuredmedia"][0].source_url
+                    : "/placeholder-bg.jpg"
+                }
+                excerpt={post.excerpt.rendered}
+              />
             ))
           ) : (
             <div className="h-[50vh] flex justify-center items-center">

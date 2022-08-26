@@ -11,7 +11,9 @@ const nextConfig = {
       "lastfm.freetls.fastly.net",
       "source.unsplash.com",
       "images.unsplash.com",
-      "voltec.s3.amazonaws.com"
+      "voltec.s3.amazonaws.com",
+      "wp.dnrm.me",
+      "f4.bcbits.com",
     ],
   },
   optimizeFonts: false,

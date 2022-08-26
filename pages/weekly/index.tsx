@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
 import clientPromise from "../../lib/mongodb";
 import { NextPage, NextPageContext } from "next";
-import Issue from "../../lib/types/NewspaperIssue";
+import Issue from "../../lib/types/NewspaperWP";
 import Link from "next/link";
+import { fetchNewspaperIssues } from "../../lib/wordpress/newspaper";
+
+const BASE_URL = "http://voltec.local/wp-json/wp/v2";
 
 type Props = {
   issues: Issue[];
 };
 
-const index: NextPage<Props> = ({ issues }) => {
+const Index: NextPage<Props> = () => {
+  const [issues, setIssues] = useState<Array<Issue>>([]);
+  console.log(issues);
+
+  useEffect(() => {
+    const getIssues = async () => {
+      const posts = await fetchNewspaperIssues();
+      setIssues(posts);
+    };
+    getIssues();
+  }, []);
+
   console.log(issues);
   return (
     <div>
@@ -27,7 +41,7 @@ const index: NextPage<Props> = ({ issues }) => {
           />
         </div>
       </div>
-      <div className="content max-w-5xl mx-auto px-4">
+      <div className="content max-w-4xl mx-auto px-4">
         <div className="information pt-8">
           <h1 className="text-6xl font-bold font-sans text-black tracking-tighter">
             VOLTEC Weekly
@@ -39,66 +53,45 @@ const index: NextPage<Props> = ({ issues }) => {
           </p>
         </div>
         <div className="issues pt-8 flex flex-col gap-4">
-          {issues.map((issue) => (
-            <div
-              key={issue._id.toString()}
-              className="issue flex flex-col md:flex-row justify-start items-center border-neutral-200 rounded-lg border-2 p-4 gap-4"
-            >
-              <div className="image relative w-full md:w-24 h-36 md:h-24 rounded-lg">
-                <Image
-                  src={`https://source.unsplash.com/random?nature,${issue._id}`}
-                  objectFit="cover"
-                  layout="fill"
-                  className="rounded-lg"
-                  alt={issue.title}
-                />
-              </div>
-              <div className="text">
-                <div className="issue-title">
-                  <span className="block">
-                    {new Date(issue.date).toLocaleDateString()}
-                  </span>
-                  <Link href={`/weekly/${issue._id.toString()}`}>
-                    <a className="text-4xl hover:underline font-bold font-manrope text-black tracking-tighter">
-                      {issue.title}
-                    </a>
-                  </Link>
+          {issues &&
+            issues.map((issue) => (
+              <div
+                key={issue.id.toString()}
+                className="issue flex flex-col md:flex-row justify-start items-center border-neutral-200 rounded-lg border-2 p-4 gap-4"
+              >
+                <div className="image relative w-full md:w-24 h-36 object-cover md:h-24 rounded-lg">
+                  <Image
+                    src={`https://source.unsplash.com/random?nature,${issue.id}`}
+                    objectFit="cover"
+                    layout="fill"
+                    className="rounded-lg"
+                    alt={issue.title.rendered}
+                  />
                 </div>
-                <div className="description">
-                  <p>{issue.description}</p>
+                <div className="text">
+                  <div className="issue-title">
+                    <span className="block">
+                      {new Date(issue.date).toLocaleDateString()}
+                    </span>
+                    <Link href={`/weekly/${issue.id.toString()}`}>
+                      <a className="text-4xl hover:underline font-bold font-manrope text-black tracking-tighter">
+                        {issue.title.rendered}
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="prose"
+                    dangerouslySetInnerHTML={{
+                      __html: issue.acm_fields.description,
+                    }}
+                  />
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default index;
-
-export async function getServerSideProps(context: NextPageContext) {
-  try {
-    const client = await clientPromise;
-    const db = client.db("Newspapers");
-
-    const issue = await db
-      .collection("issues")
-      .find({ visibility: true })
-      .toArray();
-
-    return {
-      props: {
-        issues: JSON.parse(JSON.stringify(issue)),
-      },
-    };
-  } catch (e) {
-    console.log(e);
-    return {
-      props: {
-        error: JSON.stringify(e),
-      },
-    };
-  }
-}
+export default Index;

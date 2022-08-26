@@ -1,4 +1,4 @@
-import { NextPage, NextPageContext } from "next";
+import { GetServerSidePropsContext, NextPage, NextPageContext } from "next";
 import Blog from "../../components/Blog";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -73,26 +73,27 @@ const BlogPage: NextPage<Props> = ({ posts, error }) => {
 
 export default BlogPage;
 
-export async function getServerSideProps(context: NextPageContext) {
-  try {
-    const client = await clientPromise;
-    const db = client.db("Blog");
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const id = context.query.post;
+  console.log("ID: " + id);
 
-    const posts = await db
-      .collection("Posts")
-      .find({ private: false })
-      .toArray();
+  try {
+    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts?_embed`;
+    console.log(url);
+    const res = await fetch(url);
+
+    const posts = await res.json();
 
     return {
       props: {
-        posts: JSON.parse(JSON.stringify(posts)),
+        posts,
       },
     };
   } catch (e) {
-    console.log(e);
     return {
-      props: {
-        error: JSON.stringify(e),
+      redirect: {
+        destination: "/blog",
+        permanent: false,
       },
     };
   }
