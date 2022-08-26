@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Badge from "../../components/Badge";
 import Image from "next/image";
+import { GetServerSidePropsContext } from "next";
 
 type Props = {
   post: BlogPost;
@@ -14,13 +15,15 @@ type Props = {
 };
 
 const Post = ({ post, error }: Props) => {
+  console.log(post);
+
   return (
     <div className="bg-background-blue h-screen w-screen">
       <Navbar />
       <div className="image h-1/3">
         <div className="image-container relative h-full w-full cursor-pointer">
           <Image
-            src={post.image}
+            src={post._links["wp:featuredmedia"][0].link}
             alt="AtosBot, the VOLTEC robot"
             layout="fill"
             objectFit="cover"
@@ -29,19 +32,22 @@ const Post = ({ post, error }: Props) => {
       </div>
       <div className="p-4 lg:p-14 bg-background-blue">
         <div className="max-w-6xl mx-auto">
-          <div className="badges flex justify-start items-center gap-4 pb-4">
-            {post.badges.map((i) => {
+          {/* <div className="badges flex justify-start items-center gap-4 pb-4">
+            {post.tags.map((i: string) => {
               return <Badge key={i} type={i} />;
             })}
-          </div>
+          </div> */}
           <div className="headings pt-4 lg:pt-0 pb-8">
-            <span className="date text-base font-mono text-white">{post.date ? post.date : new Date().toLocaleDateString()}</span>
-            <h1 className="title text-white pb-5">{post.title}</h1>
+            <span className="date text-base font-mono text-white">
+              {new Date(post.date).toLocaleDateString()}
+            </span>
+            <h1 className="title text-white pb-5">{post.title.rendered}</h1>
             <hr />
           </div>
-          <div className="post-content text-white font-manrope">
-            {post.content}
-          </div>
+          <div
+            className="post-content text-white font-manrope"
+            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          />
         </div>
       </div>
       <Footer />
@@ -51,26 +57,27 @@ const Post = ({ post, error }: Props) => {
 
 export default Post;
 
-export async function getServerSideProps(context: any) {
-  try {
-    const client = await clientPromise;
-    const db = client.db("Blog");
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const id = context.query.post;
+  console.log("ID: " + id);
 
-    const posts = await db
-      .collection("Posts")
-      .find({ _id: new ObjectId(context.params.post) })
-      .toArray();
+  try {
+    const res = await fetch(
+      `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts/${id}?_embed`
+    );
+
+    const post = await res.json();
 
     return {
       props: {
-        post: JSON.parse(JSON.stringify(posts[0])),
+        post,
       },
     };
   } catch (e) {
-    console.log(e);
     return {
-      props: {
-        error: true,
+      redirect: {
+        destination: "/blog",
+        permanent: false,
       },
     };
   }
