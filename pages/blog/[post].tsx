@@ -30,7 +30,7 @@ const Post = ({ post, error }: Props) => {
         </div>
       </div>
       <div className="p-4 lg:p-14 bg-background-blue">
-        <div className="w-max mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="headings prose lg:prose-title pt-4 lg:pt-0">
             <span className="date text-base font-mono text-white">
               {new Date(post.date).toLocaleDateString()}
