@@ -18,11 +18,7 @@ const Post = ({ post, error }: Props) => {
       <div className="image h-1/3">
         <div className="image-container relative h-full w-full cursor-pointer">
           <Image
-            src={
-              post._embedded["wp:featuredmedia"]
-                ? post._embedded["wp:featuredmedia"][0].source_url
-                : "/blog-bg.jpeg"
-            }
+            src={"/blog.jpeg"}
             alt="AtosBot, the VOLTEC robot"
             layout="fill"
             objectFit="cover"
@@ -30,17 +26,19 @@ const Post = ({ post, error }: Props) => {
         </div>
       </div>
       <div className="p-4 lg:p-14 bg-background-blue">
-        <div className="max-w-3xl mx-auto">
-          <div className="headings prose lg:prose-title pt-4 lg:pt-0">
+        <div className="max-w-4xl mx-auto">
+          <div className="headings w-full prose lg:prose-xl pt-4 lg:pt-0">
             <span className="date text-base font-mono text-white">
               {new Date(post.date).toLocaleDateString()}
             </span>
-            <h1 className="title text-white pb-5">{post.title.rendered}</h1>
+            <h1 className="text-5xl lg:text-6xl w-full text-white pb-5">
+              {post?.title?.rendered}
+            </h1>
           </div>
           <hr />
           <div
-            className="post-content prose lg:prose-xl text-white font-manrope pt-4"
-            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+            className="post-content prose lg:prose-xl max-w-none text-white font-manrope pt-4 prose-invert text-justify"
+            dangerouslySetInnerHTML={{ __html: post?.content?.rendered }}
           />
         </div>
       </div>
@@ -53,10 +51,9 @@ export default Post;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const id = context.query.post;
-  console.log("ID: " + id);
 
   try {
-    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts/${id}?_embed`;
+    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/portfolio/${id}?_embed`;
     const res = await fetch(url);
     const post = await res.json();
 

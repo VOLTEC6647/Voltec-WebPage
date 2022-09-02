@@ -78,7 +78,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   console.log("ID: " + id);
 
   try {
-    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/posts?_embed`;
+    const url = `https://${process.env.WORDPRESS_HOSTNAME}/wp-json/wp/v2/portfolio/?_embed`;
     console.log(url);
     const res = await fetch(url);
 

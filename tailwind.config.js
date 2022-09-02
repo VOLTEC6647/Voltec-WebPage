@@ -27,6 +27,15 @@ module.exports = {
       lineHeight: {
         squish: "0.8",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            img: {
+              width: "100% !important",
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

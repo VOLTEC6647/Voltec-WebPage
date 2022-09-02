@@ -14,6 +14,7 @@ const nextConfig = {
       "voltec.s3.amazonaws.com",
       "wp.dnrm.me",
       "f4.bcbits.com",
+      "www.voltec6647.com",
     ],
   },
   optimizeFonts: false,

@@ -1,22 +1,15 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-const Footer = () => {
+const WeeklyFooter = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 bg-gray-900 border-t-2 border-white pt-4 md:pt-14 p-5 md:p-14 font-manrope gap-2 md:gap-4">
-      <div className="voltec-logo relative flex justify-start items-center h-full overflow-hidden col-span-1 py-6 md:py-0">
-        <img
-          src="/voltec.png"
-          alt="voltec"
-          className="h-36 md:h-56 object-contain"
-        />
-        <h1 className="text-5xl xl:text-7xl font-black tracking-tighter font-sans text-white leading-none">
-          VOLTEC <br /> 6647
-        </h1>
+    <div className="max-w-4xl mx-auto">
+      <div className="px-5">
+        <hr />
       </div>
-      <div className="grid grid-cols-2 gap-16 justify-center items-center">
-        <div className="links text-white col-span-1 flex flex-col font-manrope h-full justify-start gap-2 md:gap-4">
+      <div className="grid grid-cols-2 bg-white black pt-5 p-5 font-manrope gap-2 md:gap-4">
+        <div className="links text-black col-span-1 flex flex-col font-manrope tracking-tighter h-full justify-start gap-2">
           <Link href="/">
             <a className="hover:underline text-lg">Inicio</a>
           </Link>
@@ -33,7 +26,7 @@ const Footer = () => {
             <a className="hover:underline text-lg">Patrocinadores</a>
           </Link>
         </div>
-        <div className="links text-white col-span-1 flex flex-col font-manrope leading-loose h-full justify-start gap-2 md:gap-4">
+        <div className="links text-black col-span-1 flex flex-col font-manrope tracking-tighter leading-loose h-full justify-start gap-2">
           <a
             rel="noopener noreferrer"
             target={"_blank"}
@@ -67,25 +60,21 @@ const Footer = () => {
             TikTok
           </a>
         </div>
-      </div>
-      <div className="email w-full flex flex-col gap-4 justify-start h-full pt-8">
-        <p className="text-white text-xl tracking-tighter">Recibir Correos</p>
-        <form className="flex flex-col justify-start">
-          <input
-            className="p-4 font-mono"
-            type="text"
-            placeholder="daniel@voltec6647.com"
+        <div className="voltec-logo flex justify-start items-center col-span-2 pt-4">
+          <Image
+            src="/voltec.png"
+            height={"50"}
+            width={"50"}
+            objectFit="contain"
+            alt="VOLTEC Logo"
           />
-          <button
-            type="submit"
-            className="email-button font-medium p-4 text-white font-manrope text-xl"
-          >
-            Enviar
-          </button>
-        </form>
+          <h4 className="font-bold text-2xl font-sans leading-none">
+            VOLTEC Robotics <br /> 6647
+          </h4>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Footer;
+export default WeeklyFooter;
