@@ -58,7 +58,7 @@ const Index: NextPage<Props> = () => {
             issues.map((issue) => (
               <div
                 key={issue.id.toString()}
-                className="issue flex flex-col md:flex-row justify-start items-center border-neutral-200 rounded-lg border-2 p-4 gap-4"
+                className="issue flex flex-col md:flex-row justify-start items-start border-neutral-200 rounded-lg border-2 p-4 gap-4"
               >
                 <div className="image relative w-full md:w-24 h-36 object-cover md:h-24 rounded-lg">
                   <Image
@@ -75,13 +75,13 @@ const Index: NextPage<Props> = () => {
                       {new Date(issue.date).toLocaleDateString()}
                     </span>
                     <Link href={`/weekly/${issue.id.toString()}`}>
-                      <a className="text-4xl hover:underline font-bold font-manrope text-black">
+                      <a className="text-3xl hover:underline font-bold font-manrope text-black">
                         {issue.title.rendered}
                       </a>
                     </Link>
                   </div>
                   <div
-                    className="prose"
+                    className="prose leading-tight"
                     dangerouslySetInnerHTML={{
                       __html: issue.acm_fields.description,
                     }}
@@ -106,7 +106,9 @@ const Index: NextPage<Props> = () => {
                 />
               </svg>
 
-              <h4 className="text-lg">No hay ediciones de periodico por el momento.</h4>
+              <h4 className="text-lg">
+                No hay ediciones de periodico por el momento.
+              </h4>
               <Link href="/">
                 <a className="text-teal-600 underline">Ir al inicio</a>
               </Link>
@@ -120,3 +122,5 @@ const Index: NextPage<Props> = () => {
 };
 
 export default Index;
+
+

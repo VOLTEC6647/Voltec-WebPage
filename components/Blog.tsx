@@ -35,7 +35,7 @@ const Blog = ({ posts, error }: Props) => {
                     ? post._embedded["wp:featuredmedia"][0].source_url
                     : "/placeholder-bg.jpg"
                 }
-                excerpt={post.excerpt.rendered}
+                excerpt={post.excerpt.rendered.split(" <a")[0] + "</p>"}
               />
             ))
           ) : (

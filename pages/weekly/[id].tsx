@@ -19,17 +19,17 @@ const Newspaper: NextPage<Props> = ({ newspaper }) => {
     <div>
       {newspaper && (
         <>
-          <div className="bg-black">
+          <div className="bg-background-blue-darker">
             <Navbar />
           </div>
           <div className="">
             <div className="cover-image h-56 w-full relative">
-              <Image
-                src="/voltec-weekly.jpeg"
-                objectFit="cover"
-                layout="fill"
-                alt="VOLTEC Weekly"
-              />
+            <Image
+            src="/blog.jpeg"
+            objectFit="cover"
+            layout="fill"
+            alt="VOLTEC Weekly"
+          />
             </div>
           </div>
           <div className="content max-w-4xl mx-auto h-full px-4 pb-16">
@@ -37,7 +37,7 @@ const Newspaper: NextPage<Props> = ({ newspaper }) => {
               <span className="text-neutral-500">
                 {new Date(newspaper.date).toLocaleDateString()}
               </span>
-              <h1 className="text-6xl font-bold font-sans text-black tracking-tighter">
+              <h1 className="text-4xl font-bold font-sans text-black tracking-tight">
                 {newspaper.title.rendered}
               </h1>
               <div
@@ -86,7 +86,7 @@ const Newspaper: NextPage<Props> = ({ newspaper }) => {
             </div>
             <div className="pdf h-screen w-full">
               <embed
-                src={newspaper?.acm_fields.file.source_url}
+                src={newspaper?.acm_fields.document.source_url}
                 type="application/pdf"
                 className="w-full h-full"
               />

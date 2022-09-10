@@ -5,7 +5,6 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import Head from "next/head";
 
-import clientPromise from "../../lib/mongodb";
 import BlogPost from "../../lib/types/BlogPost";
 
 type Props = {

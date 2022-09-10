@@ -12,7 +12,7 @@ export default interface Issue {
   author: number;
   acm_fields: {
     description: string;
-    file: {
+    document: {
       alt_text: string;
       caption: {
         rendered: string;
